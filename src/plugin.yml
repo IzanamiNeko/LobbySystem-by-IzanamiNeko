@@ -1,5 +1,5 @@
 name: LobbySystem2021
 main: aut.izanamineko.lobbysystem2021.main
-version: 2021.0
+version: 2021.0.ALPHA
 api-version: 1.16
 commands:
