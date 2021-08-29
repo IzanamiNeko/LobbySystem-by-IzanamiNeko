@@ -4,6 +4,7 @@ import aut.izanamineko.lobbysystem2021.commands.Lobby;
 import aut.izanamineko.lobbysystem2021.commands.SetLobby;
 import aut.izanamineko.lobbysystem2021.events.GeneralEvent;
 import aut.izanamineko.lobbysystem2021.events.JQEvent;
+import aut.izanamineko.lobbysystem2021.events.Respawn;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -36,6 +37,7 @@ public class main extends JavaPlugin {
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new JQEvent(this), (Plugin)this);
         pm.registerEvents(new GeneralEvent(this), (Plugin)this);
+        pm.registerEvents(new Respawn(), this);
         getCommand("setlobby").setExecutor(new SetLobby(this));
         getCommand("lobby").setExecutor(new Lobby(this));
 
