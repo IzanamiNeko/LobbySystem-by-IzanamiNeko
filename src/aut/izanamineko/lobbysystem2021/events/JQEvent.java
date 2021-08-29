@@ -1,11 +1,15 @@
 package aut.izanamineko.lobbysystem2021.events;
 
 import aut.izanamineko.lobbysystem2021.main;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+
+import java.io.File;
+import java.io.IOException;
 
 public class JQEvent implements Listener {
 
@@ -15,8 +19,14 @@ public class JQEvent implements Listener {
         this.plugin = instance;
     }
 
+    public static void CheckOrdner() {
+        File file = new File("plugins/LobbySystem2021/PlayerInformation");
+        if (!file.isDirectory())
+            file.mkdirs();
+    }
+
     @EventHandler
-    public void onJoin(PlayerJoinEvent e)             //Das PlayerJoinEvent wird mit einer Variablen versehen
+    public void onJoin(PlayerJoinEvent e) throws IOException             //Das PlayerJoinEvent wird mit einer Variablen versehen
     {
         Player p = e.getPlayer();
         String msg = this.plugin.getConfig().getString("Config.Messages.Join.Message");
@@ -26,6 +36,18 @@ public class JQEvent implements Listener {
             e.setJoinMessage(msg);
         } else {
             e.setJoinMessage("");
+        }
+        File file = new File("plugins/LobbySystem2021/PlayerInformation/", p.getDisplayName().toLowerCase() + ".yml");
+        CheckOrdner();
+        if (!file.exists()) {
+            file.createNewFile();
+            YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(file);
+            yamlConfiguration.set("Username", p.getDisplayName());
+            yamlConfiguration.set("UUID", p.getUniqueId());
+            yamlConfiguration.set("Inventory", p.getInventory());
+            yamlConfiguration.save(file);
+        } else {
+            System.out.println("No Player Information found.");
         }
     }
 
@@ -41,6 +63,8 @@ public class JQEvent implements Listener {
         } else {
             e.setQuitMessage("");
         }
+        File file = new File("plugins/LobbySystem2021/PlayerInformation/", p.getDisplayName().toLowerCase() + ".yml");
+        file.delete();
     }
 
 

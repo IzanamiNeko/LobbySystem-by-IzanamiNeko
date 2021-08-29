@@ -17,11 +17,11 @@ public class GeneralEvent implements Listener {
 
     public void onDrop(PlayerDropItemEvent dropItem) {
         Player p = dropItem.getPlayer();
-        if (!p.hasPermission("LobbySystem.dropItem") || this.plugin.getConfig().getString("Config.GeneralEvent.dropItem").equals("false")){
+        if (!p.hasPermission("LobbySystem.dropItem") || this.plugin.getConfig().getString("Config.GeneralEvent.dropItem").equals("false")) {
             dropItem.setCancelled(false);
-    }else{
-        return;
-    }
+        } else {
+            dropItem.setCancelled(true);
+        }
     }
 
     public void onPickup(PlayerPickupItemEvent pickupItem) {

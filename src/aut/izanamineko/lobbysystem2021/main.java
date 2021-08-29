@@ -15,24 +15,24 @@ public class main extends JavaPlugin {
     }
 
     @Override
-    public void onEnable() {        //Beim Start wird alles was in onEnable ausgeführt
+    public void onEnable() {        //Beim Start wird alles was in onEnable steht ausgeführt
         System.out.println("LobbySystem V2021 wird gestartet");
         loadListener();
         loadConfig();
     }
 
+
     @Override
-    public void onDisable() {       //Beim Stoppen wird alles was in onDisable ausgeführt
+    public void onDisable() {       //Beim Stoppen wird alles was in onDisable steht ausgeführt
         System.out.println("LobbySystem V2021 wird gestoppt");
+
     }
 
-    private void loadListener()
-    {
+    private void loadListener() {
         plugin = this;
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new JQEvent(this), (Plugin)this);
         pm.registerEvents(new GeneralEvent(this), (Plugin)this);
-
     }
 
     private void loadConfig()
