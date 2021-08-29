@@ -3,3 +3,7 @@ main: aut.izanamineko.lobbysystem2021.main
 version: 2021.0.ALPHA
 api-version: 1.16
 commands:
+  setlobby:
+    description: Use /setlobby to set the lobby.
+  lobby:
+    description: Use /lobbysystem to get help.

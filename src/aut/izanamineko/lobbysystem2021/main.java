@@ -1,7 +1,10 @@
 package aut.izanamineko.lobbysystem2021;
 
+import aut.izanamineko.lobbysystem2021.commands.Lobby;
+import aut.izanamineko.lobbysystem2021.commands.SetLobby;
 import aut.izanamineko.lobbysystem2021.events.GeneralEvent;
 import aut.izanamineko.lobbysystem2021.events.JQEvent;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -33,17 +36,30 @@ public class main extends JavaPlugin {
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new JQEvent(this), (Plugin)this);
         pm.registerEvents(new GeneralEvent(this), (Plugin)this);
+        getCommand("setlobby").setExecutor(new SetLobby(this));
+        getCommand("lobby").setExecutor(new Lobby(this));
+
     }
 
     private void loadConfig()
     {
         getConfig().options().header("LobbySystem2021 by IzanamiNeko");
-        getConfig().addDefault("Config.GeneralEvents.DropItem", "false");
+        getConfig().addDefault("Config.GeneralEvents.dropItem", "false");
         getConfig().addDefault("Config.GeneralEvents.pickupItem", "false");
         getConfig().addDefault("Config.Messages.Join.Message", "Welcome %player%");
         getConfig().addDefault("Config.Messages.Join.Show", "true");
         getConfig().addDefault("Config.Messages.Quit.Message", "Goodbye %player%");
         getConfig().addDefault("Config.Messages.Quit.Show", "true");
+        /*getConfig().addDefault("Config.WarpSystem.DeleteWarp", "The Warp has been deleted.");
+        getConfig().addDefault("Config.WarpSystem.DoesntExist", "The Warp doesnt exist.");
+        getConfig().addDefault("Config.WarpSystem.CreateWarp", "The Warp | %warp% | has been created.");*/
+        getConfig().addDefault("Config.Spawn.Permission", "You don't have any Permissions");
+        getConfig().addDefault("Config.Spawn.Set", "The Spawn has been set!");
+        getConfig().addDefault("Config.Spawn.DoesntExist", "There is not Spawn set yet!");
+        getConfig().addDefault("Config.DataCollect.On", "true");
+        getConfig().addDefault("Config.DataCollect.Note", "The moment you joined our Server, there is a File created with");
+        getConfig().addDefault("Config.DataCollect.Note2", "your current Information, like DisplayName, UUID and Inventory.");
+        getConfig().addDefault("Config.DataCollect.Note3", "The moment you leave this Server this file gets deleted!");
         getConfig().options().copyDefaults(true);
         saveConfig();
         reloadConfig();

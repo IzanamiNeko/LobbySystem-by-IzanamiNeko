@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,17 +38,28 @@ public class JQEvent implements Listener {
         } else {
             e.setJoinMessage("");
         }
-        File file = new File("plugins/LobbySystem2021/PlayerInformation/", p.getDisplayName().toLowerCase() + ".yml");
-        CheckOrdner();
-        if (!file.exists()) {
-            file.createNewFile();
-            YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(file);
-            yamlConfiguration.set("Username", p.getDisplayName());
-            yamlConfiguration.set("UUID", p.getUniqueId());
-            yamlConfiguration.set("Inventory", p.getInventory());
-            yamlConfiguration.save(file);
+        if(this.plugin.getConfig().getString("Config.DataCollect.On").equals("true")) {
+            File file = new File("plugins/LobbySystem2021/PlayerInformation/", p.getDisplayName().toLowerCase() + ".yml");
+            CheckOrdner();
+            String msg1 = this.plugin.getConfig().getString("Config.DataCollect.Note");
+            String msg2 = this.plugin.getConfig().getString("Config.DataCollect.Note2");
+            String msg3 = this.plugin.getConfig().getString("Config.DataCollect.Note3");
+            p.sendMessage(msg1);
+            p.sendMessage(msg2);
+            p.sendMessage(msg3);
+            if (!file.exists()) {
+                file.createNewFile();
+                YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(file);
+                yamlConfiguration.set("Username", p.getDisplayName());
+                yamlConfiguration.set("Displayname", p.getDisplayName());
+                yamlConfiguration.set("UUID", p.getUniqueId());
+                yamlConfiguration.set("Inventory", p.getInventory());
+                yamlConfiguration.save(file);
+            } else {
+                System.out.println("No Player Information found.");
+            }
         } else {
-            System.out.println("No Player Information found.");
+            return;
         }
     }
 
@@ -63,10 +75,9 @@ public class JQEvent implements Listener {
         } else {
             e.setQuitMessage("");
         }
-        File file = new File("plugins/LobbySystem2021/PlayerInformation/", p.getDisplayName().toLowerCase() + ".yml");
+        File file = new File("plugins/LobbySystem2021/PlayerInformation/", p.getDisplayName() + ".yml");
         file.delete();
     }
-
 
 
 }
