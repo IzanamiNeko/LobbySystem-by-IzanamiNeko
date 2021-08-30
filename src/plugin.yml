@@ -6,4 +6,6 @@ commands:
   setlobby:
     description: Use /setlobby to set the lobby.
   lobby:
-    description: Use /lobbysystem to get help.
+    description: Use /lobby to teleport to the Spawn.
+  chatclear:
+    description: Use /chatclear to Clear the Chat.

@@ -1,7 +1,9 @@
 package aut.izanamineko.lobbysystem2021;
 
+import aut.izanamineko.lobbysystem2021.commands.ChatClear;
 import aut.izanamineko.lobbysystem2021.commands.Lobby;
 import aut.izanamineko.lobbysystem2021.commands.SetLobby;
+import aut.izanamineko.lobbysystem2021.events.BypassLimit;
 import aut.izanamineko.lobbysystem2021.events.GeneralEvent;
 import aut.izanamineko.lobbysystem2021.events.JQEvent;
 import aut.izanamineko.lobbysystem2021.events.Respawn;
@@ -38,8 +40,10 @@ public class main extends JavaPlugin {
         pm.registerEvents(new JQEvent(this), (Plugin)this);
         pm.registerEvents(new GeneralEvent(this), (Plugin)this);
         pm.registerEvents(new Respawn(), this);
+        pm.registerEvents(new BypassLimit(), this);
         getCommand("setlobby").setExecutor(new SetLobby(this));
         getCommand("lobby").setExecutor(new Lobby(this));
+        getCommand("chatclear").setExecutor(new ChatClear(this));
 
     }
 
@@ -62,6 +66,8 @@ public class main extends JavaPlugin {
         getConfig().addDefault("Config.DataCollect.Note", "The moment you joined our Server, there is a File created with");
         getConfig().addDefault("Config.DataCollect.Note2", "your current Information, like DisplayName, UUID and Inventory.");
         getConfig().addDefault("Config.DataCollect.Note3", "The moment you leave this Server this file gets deleted!");
+        getConfig().addDefault("Config.ChatClear.On", "true");
+        getConfig().addDefault("Config.ChatClear.Message", "Chat has been cleared!");
         getConfig().options().copyDefaults(true);
         saveConfig();
         reloadConfig();
