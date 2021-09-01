@@ -10,4 +10,4 @@ commands:
   setlobby:
     description: Use /setlobby to set the lobby.
   lobby:
-    description: Use /lobby to teleport to the Spawn.
+    description: Use /lobby to teleport to the Spawn.s
