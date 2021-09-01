@@ -31,19 +31,19 @@ public class JQEvent implements Listener {
     {
         Player p = e.getPlayer();
         String msg = this.plugin.getConfig().getString("Config.Messages.Join.Message");
-        msg = msg.replaceAll("&", "§");
+        msg = msg.replace("&", "§");
         msg = msg.replaceAll("%player%", p.getDisplayName());
         if (this.plugin.getConfig().getString("Config.Messages.Join.Show").equals("true")) {
             e.setJoinMessage(msg);
         } else {
             e.setJoinMessage("");
         }
-        if(this.plugin.getConfig().getString("Config.DataCollect.On").equals("true")) {
+        if(this.plugin.getConfig().getString("Config.DataCollect.Enabled").equals("true")) {
             File file = new File("plugins/LobbySystem2021/PlayerInformation/", p.getDisplayName().toLowerCase() + ".yml");
             CheckOrdner();
-            String msg1 = this.plugin.getConfig().getString("Config.DataCollect.Note");
-            String msg2 = this.plugin.getConfig().getString("Config.DataCollect.Note2");
-            String msg3 = this.plugin.getConfig().getString("Config.DataCollect.Note3");
+            String msg1 = this.plugin.getConfig().getString("Config.DataCollect.Note").replace("&", "§");
+            String msg2 = this.plugin.getConfig().getString("Config.DataCollect.Note2").replace("&", "§");
+            String msg3 = this.plugin.getConfig().getString("Config.DataCollect.Note3").replace("&", "§");
             p.sendMessage(msg1);
             p.sendMessage(msg2);
             p.sendMessage(msg3);
@@ -67,9 +67,7 @@ public class JQEvent implements Listener {
     public void onQuit(PlayerQuitEvent e)
     {
         Player p = e.getPlayer();
-        String msg = this.plugin.getConfig().getString("Config.Messages.Quit.Message");
-        msg = msg.replaceAll("&", "§");
-        msg = msg.replaceAll("%player%", p.getDisplayName());
+        String msg = this.plugin.getConfig().getString("Config.Messages.Quit.Message").replace("&", "§").replaceAll("%player%", p.getDisplayName());
         if (this.plugin.getConfig().getString("Config.Messages.Quit.Show").equals("true")) {
             e.setQuitMessage(msg);
         } else {

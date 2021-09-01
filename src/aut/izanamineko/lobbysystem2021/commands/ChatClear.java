@@ -25,8 +25,8 @@ public class ChatClear implements CommandExecutor {
                     Bukkit.getServer().broadcastMessage(" ");
                     i++;
                 }
-                String msg = this.plugin.getConfig().getString("Config.ChatClear.Message");
-                msg.replaceAll("&", "§");
+                String msg = this.plugin.getConfig().getString("Config.ChatClear.Message").replace("&", "§");
+
                 Bukkit.getServer().broadcastMessage(msg);
             }
         }

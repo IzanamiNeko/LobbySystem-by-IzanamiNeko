@@ -30,16 +30,14 @@ public class Lobby implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (!p.hasPermission("LobbySystem.Lobby")) {
-            String msg = this.plugin.getConfig().getString("Config.Spawn.Permissions");
-            msg.replaceAll("&", "§");
+            String msg = this.plugin.getConfig().getString("Config.Spawn.Permissions").replace("&", "§");
             p.sendMessage(msg);
             return true;
         }
 
         File file = new File("plugins/LobbySystem2021/spawnloc.yml");
         if (!file.exists()) {
-            String msg = this.plugin.getConfig().getString("Config.Spawn.DoesntExist");
-            msg.replaceAll("&", "§");
+            String msg = this.plugin.getConfig().getString("Config.Spawn.DoesntExist").replace("&", "§");
             p.sendMessage(msg);
             return true;
         }
