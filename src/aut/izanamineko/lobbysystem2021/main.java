@@ -57,10 +57,10 @@ public class main extends JavaPlugin {
         getConfig().addDefault("Config.General.NoPerm", "&8[&3System&8] &7You dont have permissions... &4[ &c%player% &4]");
        // getConfig().addDefault("Config.GeneralEvents.dropItem", "false");
        // getConfig().addDefault("Config.GeneralEvents.pickupItem", "false");
-        getConfig().addDefault("Config.Messages.Join.Message", "&8[&3System&8] &7Welcome %player%");
         getConfig().addDefault("Config.Messages.Join.Show", "false");
-        getConfig().addDefault("Config.Messages.Quit.Message", "&8[&3System&8] &7Goodbye %player%");
+        getConfig().addDefault("Config.Messages.Join.Message", "&8[&3System&8] &7Welcome %player%");
         getConfig().addDefault("Config.Messages.Quit.Show", "false");
+        getConfig().addDefault("Config.Messages.Quit.Message", "&8[&3System&8] &7Goodbye %player%");
         /*getConfig().addDefault("Config.WarpSystem.DeleteWarp", "The Warp has been deleted.");
         getConfig().addDefault("Config.WarpSystem.DoesntExist", "The Warp doesnt exist.");
         getConfig().addDefault("Config.WarpSystem.CreateWarp", "The Warp | %warp% | has been created.");*/
@@ -68,15 +68,18 @@ public class main extends JavaPlugin {
         getConfig().addDefault("Config.Spawn.Set", "&8[&3System&8] &7The Spawn has been set!");
         getConfig().addDefault("Config.Spawn.DoesntExist", "&8[&3System&8] &7There is not Spawn set yet!");
         getConfig().addDefault("Config.DataCollect.Enabled", "false");
+        getConfig().addDefault("Config.DataCollect.Enabled.Message", "false");
         getConfig().addDefault("Config.DataCollect.Note", "&8[&3System&8] &7The moment you joined our Server, there is a File created with");
         getConfig().addDefault("Config.DataCollect.Note2", "&7your current Information, like DisplayName, UUID and Inventory.");
         getConfig().addDefault("Config.DataCollect.Note3", "&7The moment you leave this Server this file gets deleted!");
-        getConfig().addDefault("Config.ChatClear.On", "false");
+        getConfig().addDefault("Config.ChatClear.Enabled", "false");
         getConfig().addDefault("Config.ChatClear.Message", "&8[&3System&8] &7Chat has been cleared!");
-        getConfig().addDefault("Config.AntiPlugin.Message", "&8[&3System&8] &7Nice try! Good luck, next time!");
         getConfig().addDefault("Config.AntiPlugin.Enabled", "false");
-        getConfig().addDefault("Config.ReloadCMD.Message", "&8[&3System&8] &7The Server has been reloaded! (does include every Plugin/Settings)");
+        getConfig().addDefault("Config.AntiPlugin.Message", "&8[&3System&8] &7Nice try! Good luck, next time!");
         getConfig().addDefault("Config.ReloadCMD.Enabled", "false");
+        getConfig().addDefault("Config.ReloadCMD.Message", "&8[&3System&8] &7The Server has been reloaded! (does include every Plugin/Settings)");
+        getConfig().addDefault("Config.HelpList.Enabled", "false");
+        getConfig().addDefault("Config.HelpList.Message", "&8[&3System&8] There is no Help right now!");
 
 
         getConfig().options().copyDefaults(true);

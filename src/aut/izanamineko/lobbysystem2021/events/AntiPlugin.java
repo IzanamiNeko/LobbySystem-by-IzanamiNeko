@@ -53,7 +53,7 @@ public class AntiPlugin implements Listener {
             }
     }
 
-    @EventHandler
+   /* @EventHandler
     public void onCMD4(PlayerCommandPreprocessEvent onCMD) {
         Player p = onCMD.getPlayer();
         if (this.plugin.getConfig().getString("Config.AntiPlugin.Enabled").equals("true"))
@@ -63,7 +63,7 @@ public class AntiPlugin implements Listener {
                         p.sendMessage(msg);
                 onCMD.setCancelled(true);
             }
-    }
+    }*/
 
     @EventHandler
     public void onCMD5(PlayerCommandPreprocessEvent onCMD) {
@@ -178,9 +178,21 @@ public class AntiPlugin implements Listener {
     public void onCMD14(PlayerCommandPreprocessEvent onCMD) {
         Player p = onCMD.getPlayer();
         if(this.plugin.getConfig().getString("Config.ReloadCMD.Enabled").equals("true")){
-            if(onCMD.getMessage().equals("/reload")){
+            if(onCMD.getMessage().equals("/reload") && !onCMD.getPlayer().isOp()){
                 String msg = this.plugin.getConfig().getString("Config.ReloadCMD.Message").replace("&", "§").replaceAll("%player%", onCMD.getPlayer().getPlayerListName());
                 Bukkit.getServer().broadcastMessage(msg);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onCMD15(PlayerCommandPreprocessEvent onCMD)
+    {
+        Player p = onCMD.getPlayer();
+        if(this.plugin.getConfig().getString("Config.HelpList.Enabled").equals("true")){
+            if(onCMD.getMessage().equals("/help") || !onCMD.getPlayer().isOp()) {
+                String msg = this.plugin.getConfig().getString("Config.HelpList.Message").replace("&", "§").replaceAll("%player%", onCMD.getPlayer().getPlayerListName());
+                p.sendMessage(msg);
             }
         }
     }
