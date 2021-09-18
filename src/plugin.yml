@@ -1,7 +1,7 @@
 name: LobbySystem2021
 main: aut.izanamineko.lobbysystem2021.main
-version: 2021.0.BETA2
-api-version: 1.17.1
+version: 2021.1.0
+api-version: 1.16
 commands:
   chatclear:
     description: Use /chatclear to Clear the Chat
@@ -11,3 +11,9 @@ commands:
     description: Use /setlobby to set the lobby.
   lobby:
     description: Use /lobby to teleport to the Spawn.s
+  setwarp:
+    description: Use /setwarp "name" to set a warppoint
+  warp:
+    description: Use /warp "name" to teleport to the warppoint
+  delwarp:
+    description: Use /delwarp "name" to delete the Warppoint

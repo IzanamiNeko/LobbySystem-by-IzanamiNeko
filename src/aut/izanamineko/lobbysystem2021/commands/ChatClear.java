@@ -19,8 +19,7 @@ public class ChatClear implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
         if(this.plugin.getConfig().getString("Config.ChatClear.Enabled").equals("true")) {
-            if (sender.hasPermission("LobbySystem.ChatClear") &&
-                    cmd.getName().equalsIgnoreCase("chatclear") || cmd.getName().equalsIgnoreCase("cc")) {
+            if (sender.hasPermission("LobbySystem.ChatClear") && cmd.getName().equalsIgnoreCase("chatclear") || cmd.getName().equalsIgnoreCase("cc")) {
                 while (i < 100) {
                     Bukkit.getServer().broadcastMessage(" ");
                     i++;

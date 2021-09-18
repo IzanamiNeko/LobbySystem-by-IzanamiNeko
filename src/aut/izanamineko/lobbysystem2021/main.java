@@ -1,10 +1,12 @@
 package aut.izanamineko.lobbysystem2021;
 
+import aut.izanamineko.lobbysystem2021.WarpSystem.DelWarp;
+import aut.izanamineko.lobbysystem2021.WarpSystem.SetWarp;
+import aut.izanamineko.lobbysystem2021.WarpSystem.Warp;
 import aut.izanamineko.lobbysystem2021.commands.ChatClear;
 import aut.izanamineko.lobbysystem2021.commands.Lobby;
 import aut.izanamineko.lobbysystem2021.commands.SetLobby;
 import aut.izanamineko.lobbysystem2021.events.*;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,7 +21,7 @@ public class main extends JavaPlugin {
 
     @Override
     public void onEnable() {        //Beim Start wird alles was in onEnable steht ausgeführt
-        System.out.println("LobbySystem V2021 wird gestartet");
+        System.out.println("LobbySystem V2021 is starting....");
         loadListener();
         loadConfig();
     }
@@ -27,7 +29,7 @@ public class main extends JavaPlugin {
 
     @Override
     public void onDisable() {       //Beim Stoppen wird alles was in onDisable steht ausgeführt
-        System.out.println("LobbySystem V2021 wird gestoppt");
+        System.out.println("LobbySystem V2021 is stopping....");
 
     }
 
@@ -47,8 +49,9 @@ public class main extends JavaPlugin {
         getCommand("lobby").setExecutor(new Lobby(this));
         getCommand("chatclear").setExecutor(new ChatClear(this));
         getCommand("cc").setExecutor(new ChatClear(this));
-
-
+        getCommand("setwarp").setExecutor(new SetWarp(this));
+        getCommand("warp").setExecutor(new Warp(this));
+        getCommand("delwarp").setExecutor(new DelWarp(this));
     }
 
     private void loadConfig()
@@ -79,7 +82,13 @@ public class main extends JavaPlugin {
         getConfig().addDefault("Config.ReloadCMD.Enabled", "false");
         getConfig().addDefault("Config.ReloadCMD.Message", "&8[&3System&8] &7The Server has been reloaded! (does include every Plugin/Settings)");
         getConfig().addDefault("Config.HelpList.Enabled", "false");
-        getConfig().addDefault("Config.HelpList.Message", "&8[&3System&8] There is no Help right now!");
+        getConfig().addDefault("Config.HelpList.Message", "&8[&3System&8]  &7There is no Help right now!");
+        getConfig().addDefault("Config.WarpSystem.SetCMD", "&8[&3System&8]  &7Use /setwarp [warpname]!");
+        getConfig().addDefault("Config.WarpSystem.WarpCMD", "&8[&3System&8]  &7Use /warp [warpname]!");
+        getConfig().addDefault("Config.WarpSystem.SetWarp", "&8[&3System&8]  &7The Warp &4%warpname%  &7has been set!");
+        getConfig().addDefault("Config.WarpSystem.DelWarp", "&8[&3System&8]  &7The Warp &4%warpname%  &7has been deleted!");
+        getConfig().addDefault("Config.WarpSystem.NoWarp", "&8[&3System&8]  &7There is no Warp called &4%warpname%!");
+        getConfig().addDefault("Config.WarpSystem.Warped", "&8[&3System&8]  &7You've been warped!");
 
 
         getConfig().options().copyDefaults(true);

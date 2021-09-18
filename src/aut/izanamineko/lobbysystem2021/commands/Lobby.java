@@ -30,7 +30,7 @@ public class Lobby implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (!p.hasPermission("LobbySystem.Lobby")) {
-            String msg = this.plugin.getConfig().getString("Config.Spawn.Permissions").replace("&", "§");
+            String msg = this.plugin.getConfig().getString("Config.General.NoPerm").replace("&", "§");
             p.sendMessage(msg);
             return true;
         }

@@ -58,7 +58,7 @@ public class SetLobby implements CommandExecutor {
             e.printStackTrace();
         }
         String msg = this.plugin.getConfig().getString("Config.Spawn.Set");
-        msg.replaceAll("&", "§");
+        msg.replace("&", "§");
         p.sendMessage(msg);
         return true;
     }
