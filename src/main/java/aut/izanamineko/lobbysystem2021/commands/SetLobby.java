@@ -57,8 +57,7 @@ public class SetLobby implements CommandExecutor {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String msg = this.plugin.getConfig().getString("Config.Spawn.Set");
-        msg.replace("&", "§");
+        String msg = this.plugin.getConfig().getString("Config.Spawn.Set").replace("&", "§");
         p.sendMessage(msg);
         return true;
     }
