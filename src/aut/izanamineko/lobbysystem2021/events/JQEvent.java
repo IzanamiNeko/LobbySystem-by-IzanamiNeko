@@ -20,12 +20,6 @@ public class JQEvent implements Listener {
         this.plugin = instance;
     }
 
-    public static void CheckOrdner() {
-        File file = new File("plugins/LobbySystem2021/PlayerInformation");
-        if (!file.isDirectory())
-            file.mkdirs();
-    }
-
     @EventHandler
     public void onJoin(PlayerJoinEvent e) throws IOException             //Das PlayerJoinEvent wird mit einer Variablen versehen
     {
@@ -38,31 +32,8 @@ public class JQEvent implements Listener {
         } else {
             e.setJoinMessage("");
         }
-        if(this.plugin.getConfig().getString("Config.DataCollect.Enabled").equals("true")) {
-            File file = new File("plugins/LobbySystem2021/PlayerInformation/", p.getDisplayName().toLowerCase() + ".yml");
-            CheckOrdner();
-                String msg1 = this.plugin.getConfig().getString("Config.DataCollect.Note").replace("&", "§");
-                String msg2 = this.plugin.getConfig().getString("Config.DataCollect.Note2").replace("&", "§");
-                String msg3 = this.plugin.getConfig().getString("Config.DataCollect.Note3").replace("&", "§");
-                p.sendMessage(msg1);
-                p.sendMessage(msg2);
-                p.sendMessage(msg3);
 
-            if (!file.exists()) {
-                file.createNewFile();
-                YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(file);
-                yamlConfiguration.set("Username", p.getDisplayName());
-                yamlConfiguration.set("Displayname", p.getDisplayName());
-                yamlConfiguration.set("UUID", p.getUniqueId());
-                //yamlConfiguration.set("Inventory", p.getInventory());
-                yamlConfiguration.set("IP-Adress", e.getPlayer().getAddress());
-                yamlConfiguration.save(file);
-            } else {
-                System.out.println("No Player Information found.");
-            }
-        } else {
-            return;
-        }
+
     }
 
     @EventHandler
@@ -75,8 +46,7 @@ public class JQEvent implements Listener {
         } else {
             e.setQuitMessage("");
         }
-        File file = new File("plugins/LobbySystem2021/PlayerInformation/", p.getDisplayName() + ".yml");
-        file.delete();
+
     }
 
 
