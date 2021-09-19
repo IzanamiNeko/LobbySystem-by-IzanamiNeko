@@ -1,6 +1,6 @@
 name: LobbySystem2021
 main: aut.izanamineko.lobbysystem2021.main
-version: 2021.1.0
+version: 2021.1.1
 api-version: 1.16
 commands:
   chatclear:
