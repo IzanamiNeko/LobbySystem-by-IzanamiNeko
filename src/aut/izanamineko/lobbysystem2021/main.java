@@ -5,6 +5,7 @@ import aut.izanamineko.lobbysystem2021.WarpSystem.SetWarp;
 import aut.izanamineko.lobbysystem2021.WarpSystem.Warp;
 import aut.izanamineko.lobbysystem2021.commands.ChatClear;
 import aut.izanamineko.lobbysystem2021.commands.Lobby;
+import aut.izanamineko.lobbysystem2021.commands.ReloadCMD;
 import aut.izanamineko.lobbysystem2021.commands.SetLobby;
 import aut.izanamineko.lobbysystem2021.events.*;
 import org.bukkit.plugin.Plugin;
@@ -52,6 +53,8 @@ public class main extends JavaPlugin {
         getCommand("setwarp").setExecutor(new SetWarp(this));
         getCommand("warp").setExecutor(new Warp(this));
         getCommand("delwarp").setExecutor(new DelWarp(this));
+        getCommand("lobbysystem").setExecutor(new ReloadCMD(this));
+
     }
 
     private void loadConfig()
@@ -64,9 +67,6 @@ public class main extends JavaPlugin {
         getConfig().addDefault("Config.Messages.Join.Message", "&8[&3System&8] &7Welcome %player%");
         getConfig().addDefault("Config.Messages.Quit.Show", "false");
         getConfig().addDefault("Config.Messages.Quit.Message", "&8[&3System&8] &7Goodbye %player%");
-        /*getConfig().addDefault("Config.WarpSystem.DeleteWarp", "The Warp has been deleted.");
-        getConfig().addDefault("Config.WarpSystem.DoesntExist", "The Warp doesnt exist.");
-        getConfig().addDefault("Config.WarpSystem.CreateWarp", "The Warp | %warp% | has been created.");*/
         getConfig().addDefault("Config.Spawn.Permission", "&8[&3System&8] &7You don't have any Permissions");
         getConfig().addDefault("Config.Spawn.Set", "&8[&3System&8] &7The Spawn has been set!");
         getConfig().addDefault("Config.Spawn.DoesntExist", "&8[&3System&8] &7There is not Spawn set yet!");
@@ -79,10 +79,19 @@ public class main extends JavaPlugin {
         getConfig().addDefault("Config.ChatClear.Message", "&8[&3System&8] &7Chat has been cleared!");
         getConfig().addDefault("Config.AntiPlugin.Enabled", "false");
         getConfig().addDefault("Config.AntiPlugin.Message", "&8[&3System&8] &7Nice try! Good luck, next time!");
-        getConfig().addDefault("Config.ReloadCMD.Enabled", "false");
         getConfig().addDefault("Config.ReloadCMD.Message", "&8[&3System&8] &7The Server has been reloaded! (does include every Plugin/Settings)");
         getConfig().addDefault("Config.HelpList.Enabled", "false");
-        getConfig().addDefault("Config.HelpList.Message", "&8[&3System&8]  &7There is no Help right now!");
+        getConfig().addDefault("Config.HelpList.Line1", "&c----------- &6[LobbySystem] &-----------");
+        getConfig().addDefault("Config.HelpList.Line2", "TEST");
+        getConfig().addDefault("Config.HelpList.Line3", "TEST");
+        getConfig().addDefault("Config.HelpList.Line4", "TEST");
+        getConfig().addDefault("Config.HelpList.Line5", "TEST");
+        getConfig().addDefault("Config.HelpList.Line6", "TEST");
+        getConfig().addDefault("Config.HelpList.Line7", "TEST");
+        getConfig().addDefault("Config.HelpList.Line8", "TEST");
+        getConfig().addDefault("Config.HelpList.Line9", "&c----------- &6[LobbySystem] &-----------");
+
+        //getConfig().addDefault("Config.HelpList.Message", "&8[&3System&8]  &7There is no Help right now!");
         getConfig().addDefault("Config.WarpSystem.SetCMD", "&8[&3System&8]  &7Use /setwarp [warpname]!");
         getConfig().addDefault("Config.WarpSystem.WarpCMD", "&8[&3System&8]  &7Use /warp [warpname]!");
         getConfig().addDefault("Config.WarpSystem.SetWarp", "&8[&3System&8]  &7The Warp &4%warpname%  &7has been set!");
