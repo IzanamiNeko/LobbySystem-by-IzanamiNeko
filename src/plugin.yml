@@ -1,7 +1,6 @@
 name: LobbySystem2021
 main: aut.izanamineko.lobbysystem2021.main
-version: 2021.1.1
-api-version: 1.16
+version: 2021.1.2
 commands:
   chatclear:
     description: Use /chatclear to Clear the Chat
@@ -19,3 +18,5 @@ commands:
     description: Use /delwarp "name" to delete the Warppoint
   lobbysystem:
     description: Use /lobbysystem for Informations
+  ping:
+    description: Use /ping to see your Latency

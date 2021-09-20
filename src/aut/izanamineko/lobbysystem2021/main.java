@@ -1,12 +1,10 @@
 package aut.izanamineko.lobbysystem2021;
 
+
 import aut.izanamineko.lobbysystem2021.WarpSystem.DelWarp;
 import aut.izanamineko.lobbysystem2021.WarpSystem.SetWarp;
 import aut.izanamineko.lobbysystem2021.WarpSystem.Warp;
-import aut.izanamineko.lobbysystem2021.commands.ChatClear;
-import aut.izanamineko.lobbysystem2021.commands.Lobby;
-import aut.izanamineko.lobbysystem2021.commands.ReloadCMD;
-import aut.izanamineko.lobbysystem2021.commands.SetLobby;
+import aut.izanamineko.lobbysystem2021.commands.*;
 import aut.izanamineko.lobbysystem2021.events.*;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -47,6 +45,7 @@ public class main extends JavaPlugin {
         pm.registerEvents(new AntiPlugin(this), this);
         //pm.registerEvents(new PlayerInformation(this), this);
         pm.registerEvents(new TeamChat(this), this);
+        pm.registerEvents(new DoubleJump(this), this);
 
 
 
@@ -58,6 +57,7 @@ public class main extends JavaPlugin {
         getCommand("warp").setExecutor(new Warp(this));
         getCommand("delwarp").setExecutor(new DelWarp(this));
         getCommand("lobbysystem").setExecutor(new ReloadCMD(this));
+        getCommand("ping").setExecutor(new PingCMD(this));
 
     }
 
@@ -65,14 +65,19 @@ public class main extends JavaPlugin {
     {
         getConfig().options().header("LobbySystem2021 by IzanamiNeko");
         getConfig().addDefault("Config.General.NoPerm", "&8[&3System&8] &7You dont have permissions... &4[ &c%player% &4]");
+
+        //Join/Quit System
         getConfig().addDefault("Config.Messages.Join.Show", "false");
         getConfig().addDefault("Config.Messages.Join.Message", "&8[&3System&8] &7Welcome %player%");
         getConfig().addDefault("Config.Messages.Quit.Show", "false");
         getConfig().addDefault("Config.Messages.Quit.Message", "&8[&3System&8] &7Goodbye %player%");
+
+        //Spawn/Lobby System
         getConfig().addDefault("Config.Spawn.Permission", "&8[&3System&8] &7You don't have any Permissions");
         getConfig().addDefault("Config.Spawn.Set", "&8[&3System&8] &7The Spawn has been set!");
         getConfig().addDefault("Config.Spawn.DoesntExist", "&8[&3System&8] &7There is not Spawn set yet!");
 
+        //ChatClear System
         getConfig().addDefault("Config.ChatClear.Enabled", "false");
         getConfig().addDefault("Config.ChatClear.Message", "&8[&3System&8] &7Chat has been cleared!");
 
@@ -96,17 +101,39 @@ public class main extends JavaPlugin {
 
 
         //WarpSystem
-        getConfig().addDefault("Config.WarpSystem.SetCMD", "&8[&3System&8]  &7Use /setwarp [warpname]!");
-        getConfig().addDefault("Config.WarpSystem.WarpCMD", "&8[&3System&8]  &7Use /warp [warpname]!");
-        getConfig().addDefault("Config.WarpSystem.SetWarp", "&8[&3System&8]  &7The Warp &4%warpname%  &7has been set!");
-        getConfig().addDefault("Config.WarpSystem.DelWarp", "&8[&3System&8]  &7The Warp &4%warpname%  &7has been deleted!");
-        getConfig().addDefault("Config.WarpSystem.NoWarp", "&8[&3System&8]  &7There is no Warp called &4%warpname%!");
-        getConfig().addDefault("Config.WarpSystem.Warped", "&8[&3System&8]  &7You've been warped!");
+        getConfig().addDefault("Config.WarpSystem.SetCMD", "&8[&3System&8] &7Use /setwarp [warpname]!");
+        getConfig().addDefault("Config.WarpSystem.WarpCMD", "&8[&3System&8] &7Use /warp [warpname]!");
+        getConfig().addDefault("Config.WarpSystem.SetWarp", "&8[&3System&8] &7The Warp &4%warpname%  &7has been set!");
+        getConfig().addDefault("Config.WarpSystem.DelWarp", "&8[&3System&8] &7The Warp &4%warpname%  &7has been deleted!");
+        getConfig().addDefault("Config.WarpSystem.NoWarp", "&8[&3System&8] &7There is no Warp called &4%warpname%!");
+        getConfig().addDefault("Config.WarpSystem.Warped", "&8[&3System&8] &7You've been warped!");
 
         ///TeamChat
         getConfig().addDefault("Config.TeamChat.Enabled", "true");
         getConfig().addDefault("Config.TeamChat.Prefix", "&e[&bTeamChat&e] %player%  >> &r");
 
+        //DoubleJump
+        getConfig().addDefault("Config.DoubleJump.Enabled", "true");
+
+        //PingCMD
+        getConfig().addDefault("Config.PingCMD.Message", "&8[&3System&8] &7You have a Ping of %ms% ms");
+
+        //Scoreboard
+        /*getConfig().addDefault("Config.Scoreboard.Displayname", "&4Test-Server");
+        getConfig().addDefault("Config.Scoreboard.Line1", "&6Test1");
+        getConfig().addDefault("Config.Scoreboard.Line2", "&6Test2");
+        getConfig().addDefault("Config.Scoreboard.Line3", "&6Test3");
+        getConfig().addDefault("Config.Scoreboard.Line4", "&6Test4");
+        getConfig().addDefault("Config.Scoreboard.Line5", "&6Test5");
+        getConfig().addDefault("Config.Scoreboard.Line6", "&6Test6");
+        getConfig().addDefault("Config.Scoreboard.Line7", "&6Test7");
+        getConfig().addDefault("Config.Scoreboard.Line8", "&6Test8");
+        getConfig().addDefault("Config.Scoreboard.Line9", "&6Test9");
+        getConfig().addDefault("Config.Scoreboard.Line10", "&6Test10");
+        getConfig().addDefault("Config.Scoreboard.Line11", "&6Test11");
+        getConfig().addDefault("Config.Scoreboard.Line12", "&6Test12");
+        getConfig().addDefault("Config.Scoreboard.Line13", "&6Test13");
+        getConfig().addDefault("Config.Scoreboard.Line14", "&6Test14");*/
 
         getConfig().options().copyDefaults(true);
         saveConfig();

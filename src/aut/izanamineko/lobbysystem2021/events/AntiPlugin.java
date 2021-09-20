@@ -117,7 +117,7 @@ public class AntiPlugin implements Listener {
     public void onCMD15(PlayerCommandPreprocessEvent onCMD) {
         Player p = onCMD.getPlayer();
         if(this.plugin.getConfig().getString("Config.HelpList.Enabled").equals("true")){
-            if(onCMD.getMessage().equals("/help") || onCMD.getMessage().equals("/?") || onCMD.getMessage().equals("/bukkit:help") || onCMD.getMessage().equals("/bukkit:?") && !onCMD.getPlayer().isOp() || !onCMD.getPlayer().hasPermission("LobbySystem.HelpCMD")) {
+            if(!onCMD.getPlayer().hasPermission("LobbySystem.HelpCMD") && onCMD.getMessage().equals("/help") || onCMD.getMessage().equals("/?") || onCMD.getMessage().equals("/bukkit:help") || onCMD.getMessage().equals("/bukkit:?")){
                 String msg1 = this.plugin.getConfig().getString("Config.HelpList.Line1").replace("&", "§");
                 String msg2 = this.plugin.getConfig().getString("Config.HelpList.Line2").replace("&", "§");
                 String msg3 = this.plugin.getConfig().getString("Config.HelpList.Line3").replace("&", "§");

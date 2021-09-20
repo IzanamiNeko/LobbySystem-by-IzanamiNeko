@@ -55,11 +55,11 @@ public class Warp implements CommandExecutor {
                     p.teleport(loc);
                     String msg = this.plugin.getConfig().getString("Config.WarpSystem.Warped").replace("&", "§");
                     p.sendMessage(msg);
-                } else {
-                    String msg = this.plugin.getConfig().getString("Config.General.NoPerm").replace("&", "§");
-                    p.sendMessage(msg);
                 }
-            }
+                }
+            } else {
+            String msg = this.plugin.getConfig().getString("Config.General.NoPerm").replace("&", "§").replaceAll("%player%", p.getName());
+            p.sendMessage(msg);
         }
         return true;
     }

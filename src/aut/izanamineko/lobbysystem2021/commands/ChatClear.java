@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class ChatClear implements CommandExecutor {
 
@@ -17,9 +18,9 @@ public class ChatClear implements CommandExecutor {
 
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
+        Player p = (Player)sender;
         if(this.plugin.getConfig().getString("Config.ChatClear.Enabled").equals("true")) {
-            if (sender.hasPermission("LobbySystem.ChatClear") && cmd.getName().equalsIgnoreCase("chatclear") || cmd.getName().equalsIgnoreCase("cc")) {
+            if (p.hasPermission("LobbySystem.ChatClear")) {
                 while (i < 100) {
                     Bukkit.getServer().broadcastMessage(" ");
                     i++;
@@ -27,6 +28,9 @@ public class ChatClear implements CommandExecutor {
                 String msg = this.plugin.getConfig().getString("Config.ChatClear.Message").replace("&", "§");
 
                 Bukkit.getServer().broadcastMessage(msg);
+            } else {
+                String msg1 = this.plugin.getConfig().getString("Config.General.NoPerm").replace("&", "§").replaceAll("%player%", p.getName());
+                p.sendMessage(msg1);
             }
         }
         i = 0;
