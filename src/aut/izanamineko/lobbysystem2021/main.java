@@ -6,16 +6,16 @@ import aut.izanamineko.lobbysystem2021.WarpSystem.SetWarp;
 import aut.izanamineko.lobbysystem2021.WarpSystem.Warp;
 import aut.izanamineko.lobbysystem2021.commands.*;
 import aut.izanamineko.lobbysystem2021.events.*;
-import org.bukkit.plugin.Plugin;
+import aut.izanamineko.lobbysystem2021.gui.InvGui;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scoreboard.Team;
 
-import java.io.File;
 
 public class main extends JavaPlugin {
 
     private static main plugin;
+    public Inventory inv = null;
 
     public static main getPlugin() {
         return plugin;
@@ -38,7 +38,7 @@ public class main extends JavaPlugin {
     private void loadListener() {
         plugin = this;
         PluginManager pm = getServer().getPluginManager();
-        pm.registerEvents(new JQEvent(this), (Plugin)this);
+        pm.registerEvents(new JQEvent(this), this);
         //pm.registerEvents(new GeneralEvent(this), (Plugin)this);
         pm.registerEvents(new Respawn(), this);
         pm.registerEvents(new BypassLimit(), this);
@@ -46,6 +46,8 @@ public class main extends JavaPlugin {
         //pm.registerEvents(new PlayerInformation(this), this);
         pm.registerEvents(new TeamChat(this), this);
         pm.registerEvents(new DoubleJump(this), this);
+        pm.registerEvents(new InvGui(), this);
+        //pm.registerEvents(new InvOnJoin(this), this);
 
 
 
@@ -58,6 +60,7 @@ public class main extends JavaPlugin {
         getCommand("delwarp").setExecutor(new DelWarp(this));
         getCommand("lobbysystem").setExecutor(new ReloadCMD(this));
         getCommand("ping").setExecutor(new PingCMD(this));
+        getCommand("bug").setExecutor(new BugCMD(this));
 
     }
 
@@ -118,22 +121,9 @@ public class main extends JavaPlugin {
         //PingCMD
         getConfig().addDefault("Config.PingCMD.Message", "&8[&3System&8] &7You have a Ping of %ms% ms");
 
-        //Scoreboard
-        /*getConfig().addDefault("Config.Scoreboard.Displayname", "&4Test-Server");
-        getConfig().addDefault("Config.Scoreboard.Line1", "&6Test1");
-        getConfig().addDefault("Config.Scoreboard.Line2", "&6Test2");
-        getConfig().addDefault("Config.Scoreboard.Line3", "&6Test3");
-        getConfig().addDefault("Config.Scoreboard.Line4", "&6Test4");
-        getConfig().addDefault("Config.Scoreboard.Line5", "&6Test5");
-        getConfig().addDefault("Config.Scoreboard.Line6", "&6Test6");
-        getConfig().addDefault("Config.Scoreboard.Line7", "&6Test7");
-        getConfig().addDefault("Config.Scoreboard.Line8", "&6Test8");
-        getConfig().addDefault("Config.Scoreboard.Line9", "&6Test9");
-        getConfig().addDefault("Config.Scoreboard.Line10", "&6Test10");
-        getConfig().addDefault("Config.Scoreboard.Line11", "&6Test11");
-        getConfig().addDefault("Config.Scoreboard.Line12", "&6Test12");
-        getConfig().addDefault("Config.Scoreboard.Line13", "&6Test13");
-        getConfig().addDefault("Config.Scoreboard.Line14", "&6Test14");*/
+        //BugCMD
+        getConfig().addDefault("Config.BugCMD.Message", "&8[&3System&8] &c%player% &7reported a Bug");
+        getConfig().addDefault("Config.BugCMD.BugReport", "&8[&3System&8] &7%bug%");
 
         getConfig().options().copyDefaults(true);
         saveConfig();
@@ -142,13 +132,3 @@ public class main extends JavaPlugin {
 
 
 }
-
-
-//getConfig().addDefault("Config.DataCollect.Enabled", "false");
-//getConfig().addDefault("Config.DataCollect.Enabled.Message", "false");
-//getConfig().addDefault("Config.DataCollect.Note", "&8[&3System&8] &7The moment you joined our Server, there is a File created with");
-//getConfig().addDefault("Config.DataCollect.Note2", "&7your current Information, like DisplayName, UUID and Inventory.");
-//getConfig().addDefault("Config.DataCollect.Note3", "&7The moment you leave this Server this file gets deleted!");
-//getConfig().addDefault("Config.HelpList.Message", "&8[&3System&8]  &7There is no Help right now!");
-//getConfig().addDefault("Config.GeneralEvents.dropItem", "false");
-//getConfig().addDefault("Config.GeneralEvents.pickupItem", "false");
