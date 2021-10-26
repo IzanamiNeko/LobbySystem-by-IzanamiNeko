@@ -17,8 +17,9 @@ public class GeneralEvent implements Listener {
 
     public void onDrop(PlayerDropItemEvent dropItem) {
         Player p = dropItem.getPlayer();
-        if(p.hasPermission("LobbySystem.DropItem") || this.plugin.getConfig().getString("Config.GeneralEvents.dropItem").equals("false"))
-            return;
+        if(p.hasPermission("LobbySystem.DropItem") || this.plugin.getConfig().getString("Config.GeneralEvents.dropItem").equals("false")) {
+            dropItem.setCancelled(false);
+        }
         dropItem.setCancelled(true);
     }
 

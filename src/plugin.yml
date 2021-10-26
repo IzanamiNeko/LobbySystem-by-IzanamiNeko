@@ -16,6 +16,8 @@ commands:
     description: Use /warp "name" to teleport to the warppoint
   delwarp:
     description: Use /delwarp "name" to delete the Warppoint
+  warplist:
+    description: Use /warplist to get every Warppoint set right now!
   lobbysystem:
     description: Use /lobbysystem for Informations
   ping:

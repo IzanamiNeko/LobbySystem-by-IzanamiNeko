@@ -18,16 +18,20 @@ public class TeamChat implements Listener {
     @EventHandler
     public boolean onTC(PlayerChatEvent e) {
         Player p = e.getPlayer();
-        String tc = this.plugin.getConfig().getString("Config.TeamChat.Prefix").replace("&", "§").replaceAll("%player%", p.getName());
+        String tc = this.plugin.getConfig().getString("TeamChat.Prefix").replace("&", "§").replaceAll("%player%", p.getName());
 
-        if (this.plugin.getConfig().getString("Config.TeamChat.Enabled").equals("true") && e.getMessage().startsWith("!") && p.hasPermission("LobbySystem.TeamChat") || p.isOp()) {
-            e.setCancelled(true);
-            for (Player players : Bukkit.getOnlinePlayers()) {
-                if (players.hasPermission("LobbySystem.TeamChat")){
-                    players.sendMessage(tc + e.getMessage().replaceAll("!", ""));
-
+        if (this.plugin.getConfig().getString("TeamChat.Enabled").equals("true")){
+            if (e.getMessage().startsWith("!")) {
+                if (p.hasPermission("LobbySystem.TeamChat") || p.isOp()) {
+                    e.setCancelled(true);
+                    for (Player players : Bukkit.getOnlinePlayers()) {
+                        if (players.hasPermission("LobbySystem.TeamChat")) {
+                            players.sendMessage(tc + e.getMessage().replaceAll("!", ""));
+                        }
+                    }
                 }
-
+            } else {
+                e.setCancelled(false);
             }
         }
         return false;

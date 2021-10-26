@@ -24,10 +24,10 @@ public class JQEvent implements Listener {
     public void onJoin(PlayerJoinEvent e) throws IOException             //Das PlayerJoinEvent wird mit einer Variablen versehen
     {
         Player p = e.getPlayer();
-        String msg = this.plugin.getConfig().getString("Config.Messages.Join.Message");
+        String msg = this.plugin.getConfig().getString("Messages.Join.Message");
         msg = msg.replace("&", "§");
         msg = msg.replaceAll("%player%", p.getDisplayName());
-        if (this.plugin.getConfig().getString("Config.Messages.Join.Show").equals("true")) {
+        if (this.plugin.getConfig().getString("Messages.Join.Show").equals("true")) {
             e.setJoinMessage(msg);
         } else {
             e.setJoinMessage("");
@@ -40,8 +40,8 @@ public class JQEvent implements Listener {
     public void onQuit(PlayerQuitEvent e)
     {
         Player p = e.getPlayer();
-        String msg = this.plugin.getConfig().getString("Config.Messages.Quit.Message").replace("&", "§").replaceAll("%player%", p.getDisplayName());
-        if (this.plugin.getConfig().getString("Config.Messages.Quit.Show").equals("true")) {
+        String msg = this.plugin.getConfig().getString("Messages.Quit.Message").replace("&", "§").replaceAll("%player%", p.getDisplayName());
+        if (this.plugin.getConfig().getString("Messages.Quit.Show").equals("true")) {
             e.setQuitMessage(msg);
         } else {
             e.setQuitMessage("");

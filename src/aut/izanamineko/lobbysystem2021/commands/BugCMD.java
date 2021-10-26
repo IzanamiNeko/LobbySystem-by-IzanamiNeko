@@ -35,12 +35,12 @@ public class BugCMD implements CommandExecutor {
                 bug = bug + args[i] + " ";
             for (Player players : Bukkit.getOnlinePlayers()) {
                 if (players.hasPermission("LobbySystem2021.ReceiveBug")) {
-                    String msg = this.plugin.getConfig().getString("Config.BugCMD.Message").replaceAll("%player%", sender.getName()).replace("&", "§");
+                    String msg = this.plugin.getConfig().getString("BugCMD.Message").replaceAll("%player%", sender.getName()).replace("&", "§");
                     players.sendMessage(msg);
-                    String msg2 = this.plugin.getConfig().getString("Config.BugCMD.BugReport").replace("&", "§").replaceAll("%bug%", bug);
+                    String msg2 = this.plugin.getConfig().getString("BugCMD.BugReport").replace("&", "§").replaceAll("%bug%", bug);
                     players.sendMessage(msg2);
                     players.playSound(players.getLocation(), Sound.BLOCK_ANVIL_USE, 10.0F, 10.0F);
-                    File file = new File("plugins/LobbySystem2021/ReportBugs/" + bug + ".yml");
+                    File file = new File("plugins/LobbySystem2021/ReportBugs/Bug found by " + p.getDisplayName() + ".yml");
                     if(!file.exists()){
                         try {
                             file.createNewFile();

@@ -27,11 +27,12 @@ public class SetLobby implements CommandExecutor {
         }
         Player p = (Player)sender;
         if (!p.hasPermission("LobbySystem.SetLobby")) {
-            String msg = this.plugin.getConfig().getString("Config.Spawn.Permissions").replace("&", "§");
+            String msg = this.plugin.getConfig().getString("Spawn.Permissions").replace("&", "§");
             p.sendMessage(msg);
             return true;
         }
-        File file = new File("plugins/LobbySystem2021/spawnloc.yml");
+        //File file = new File("plugins/LobbySystem2021/spawnloc.yml");
+        File file = new File(this.plugin.getConfig().getString("Spawn.Path"));
         if (!file.exists())
             try {
                 file.createNewFile();
@@ -57,7 +58,7 @@ public class SetLobby implements CommandExecutor {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String msg = this.plugin.getConfig().getString("Config.Spawn.Set").replace("&", "§");
+        String msg = this.plugin.getConfig().getString("Spawn.Set").replace("&", "§");
         p.sendMessage(msg);
         return true;
     }

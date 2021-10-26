@@ -24,21 +24,25 @@ public class DoubleJump implements Listener {
         if (player.getGameMode() == GameMode.CREATIVE)
             return;
         event.setCancelled(true);
-        if (this.plugin.getConfig().getString("Config.DoubleJump.Enabled").equals("true"))
-            if (player.hasPermission("LobbySystem.DoubleJump"))
+        if (this.plugin.getConfig().getString("DoubleJump.Enabled").equals("true")) {
+            if (player.hasPermission("LobbySystem.DoubleJump")) {
                 player.setAllowFlight(false);
-        player.setFlying(false);
-        player.setVelocity(player.getLocation().getDirection().multiply(1.5D).setY(1));
+                player.setFlying(false);
+                player.setVelocity(player.getLocation().getDirection().multiply(1.5D).setY(1));
+            }
+        }
     }
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        if (this.plugin.getConfig().getString("Config.DoubleJump.Enabled").equals("true"))
-            if (player.hasPermission("LobbySystem.DoubleJump"))
-            if (player.getGameMode() != GameMode.CREATIVE && player
-                    .getLocation().subtract(0.0D, 1.0D, 0.0D).getBlock().getType() != Material.AIR &&
-                    !player.isFlying())
-                player.setAllowFlight(true);
+        if (this.plugin.getConfig().getString("DoubleJump.Enabled").equals("true")) {
+            if (player.hasPermission("LobbySystem.DoubleJump")) {
+                if (player.getGameMode() != GameMode.CREATIVE && player
+                        .getLocation().subtract(0.0D, 1.0D, 0.0D).getBlock().getType() != Material.AIR &&
+                        !player.isFlying())
+                    player.setAllowFlight(true);
+            }
+        }
     }
 }
