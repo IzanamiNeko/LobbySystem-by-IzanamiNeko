@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class ConfigManager {
 
-    private main plugin = main.getPlugin(main.class);
+    private main plugin = main.getPlugin(main .class);
 
 
     public FileConfiguration messagesyscfg;

@@ -10,16 +10,12 @@ import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 public class PingCMD implements CommandExecutor {
-    ConfigManager cfgm;
-
-    public PingCMD(ConfigManager instance) {
-        this.cfgm = instance;
-    }
 
     main plugin;
 
-    public PingCMD(main instance) {
-        this.plugin = instance;
+
+    public PingCMD(main plugin) {
+        this.plugin = plugin;
     }
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -27,10 +23,10 @@ public class PingCMD implements CommandExecutor {
         double ms = getPing(p);
         if (cmd.getName().equals("ping")) {
             if (p.hasPermission("LobbySystem.PingCMD")) {
-                String msg = cfgm.getMessagesCFG().getString("PingCMD.Message").replace("&", "§").replaceAll("%ms%", String.valueOf(ms));
+                String msg = this.plugin.getConfig().getString("PingCMD.Message").replace("&", "§").replaceAll("%ms%", String.valueOf(ms));
                 p.sendMessage(msg);
             } else {
-                String msg1 = cfgm.getMessagesCFG().getString("General.NoPerm").replace("&", "§").replaceAll("%player%", p.getName());
+                String msg1 = this.plugin.getConfig().getString("General.NoPerm").replace("&", "§").replaceAll("%player%", p.getName());
                 p.sendMessage(msg1);
             }
         }

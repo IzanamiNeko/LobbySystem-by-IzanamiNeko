@@ -1,6 +1,7 @@
 package aut.izanamineko.lobbysystem2021.WarpSystem;
 
 import aut.izanamineko.lobbysystem2021.ConfigManager;
+import aut.izanamineko.lobbysystem2021.main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -16,10 +17,11 @@ import java.io.File;
 public class Warp implements CommandExecutor {
 
 
-    ConfigManager plugin;
+    main plugin;
 
-    public Warp(ConfigManager instance) {
-        plugin = instance;
+
+    public Warp(main plugin) {
+        this.plugin = plugin;
     }
 
     @Override
@@ -30,7 +32,7 @@ public class Warp implements CommandExecutor {
                 if (args.length > 0) {
                     File file = new File("plugins/LobbySystem2021/Warps/", args[0] + ".yml");
                     if (!file.exists()) {
-                        String msg = this.plugin.getMessagesCFG().getString("WarpSystem.NoWarp").replace("&", "§").replaceAll("%warpname%", args[0]);
+                        String msg = this.plugin.getConfig().getString("WarpSystem.NoWarp").replace("&", "§").replaceAll("%warpname%", args[0]);
                         p.sendMessage(msg);
                         return true;
                     }
@@ -50,11 +52,11 @@ public class Warp implements CommandExecutor {
                     loc.setPitch(pitch);
                     loc.setWorld(welt);
                     p.teleport(loc);
-                    String msg = this.plugin.getMessagesCFG().getString("WarpSystem.Warped").replace("&", "§");
+                    String msg = this.plugin.getConfig().getString("WarpSystem.Warped").replace("&", "§");
                     p.sendMessage(msg);
                 }
             } else {
-                String msg = this.plugin.getMessagesCFG().getString("General.NoPerm").replace("&", "§").replaceAll("%player%", p.getName());
+                String msg = this.plugin.getConfig().getString("General.NoPerm").replace("&", "§").replaceAll("%player%", p.getName());
                 p.sendMessage(msg);
             }
 

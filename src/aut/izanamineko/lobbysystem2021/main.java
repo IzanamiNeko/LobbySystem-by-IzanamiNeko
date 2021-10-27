@@ -20,11 +20,13 @@ import java.io.IOException;
 
 public class main extends JavaPlugin {
 
-    private ConfigManager cfgm;
+    main plugin;
+    ConfigManager cfgm;
 
     @Override
     public void onEnable() {        //Beim Start wird alles was in onEnable steht ausgeführt
         System.out.println(ChatColor.GREEN + "LobbySystem V2021 is starting....");
+
         createWarpsDirectory();
         loadListener();
         loadConfig();
@@ -42,20 +44,20 @@ public class main extends JavaPlugin {
         cfgm = new ConfigManager();
         cfgm.MessagesCFGsetup();
         cfgm.getMessagesCFG().options().header("WarpSystemConfig by IzanamiNeko");
-        cfgm.getMessagesCFG().addDefault("General.NoPerm", "&8[&3System&8] &7You dont have permissions... &4[ &c%player% &4]");
-        cfgm.getMessagesCFG().addDefault("WarpSystem.SetCMD", "&8[&3System&8] &7Use /setwarp [warpname]!");
-        cfgm.getMessagesCFG().addDefault("WarpSystem.WarpCMD", "&8[&3System&8] &7Use /warp [warpname]!");
-        cfgm.getMessagesCFG().addDefault("WarpSystem.SetWarp", "&8[&3System&8] &7The Warp &4%warpname%  &7has been set!");
-        cfgm.getMessagesCFG().addDefault("WarpSystem.DelWarp", "&8[&3System&8] &7The Warp &4%warpname%  &7has been deleted!");
-        cfgm.getMessagesCFG().addDefault("WarpSystem.NoWarp", "&8[&3System&8] &7There is no Warp called &4%warpname%!");
-        cfgm.getMessagesCFG().addDefault("WarpSystem.Warped", "&8[&3System&8] &7You've been warped!");
-        cfgm.getMessagesCFG().addDefault("Spawn.Permission", "&8[&3System&8] &7You don't have any Permissions");
-        cfgm.getMessagesCFG().addDefault("Spawn.Set", "&8[&3System&8] &7The Spawn has been set!");
-        cfgm.getMessagesCFG().addDefault("Spawn.DoesntExist", "&8[&3System&8] &7There is not Spawn set yet!");
-        cfgm.getMessagesCFG().addDefault("ChatClear.Message", "&8[&3System&8] &7Chat has been cleared!");
-        cfgm.getMessagesCFG().addDefault("AntiPlugin.Message", "&8[&3System&8] &7Nice try! Good luck, next time!");
-        cfgm.getMessagesCFG().addDefault("ReloadCMD.Message", "&8[&3System&8] &7LobbySystem2021 has been reloaded! (every LobbySystem Configs)");
-        cfgm.getMessagesCFG().addDefault("PingCMD.Message", "&8[&3System&8] &7You have a Ping of %ms% ms");
+        //cfgm.getMessagesCFG().addDefault("General.NoPerm", "&8[&3System&8] &7You dont have permissions... &4[ &c%player% &4]");
+        cfgm.getMessagesCFG().addDefault("Messages.WarpSystem.SetCMD", "&8[&3System&8] &7Use /setwarp [warpname]!");
+        cfgm.getMessagesCFG().addDefault("Messages.WarpSystem.WarpCMD", "&8[&3System&8] &7Use /warp [warpname]!");
+        cfgm.getMessagesCFG().addDefault("Messages.WarpSystem.SetWarp", "&8[&3System&8] &7The Warp &4%warpname%  &7has been set!");
+        cfgm.getMessagesCFG().addDefault("Messages.WarpSystem.DelWarp", "&8[&3System&8] &7The Warp &4%warpname%  &7has been deleted!");
+        cfgm.getMessagesCFG().addDefault("Messages.WarpSystem.NoWarp", "&8[&3System&8] &7There is no Warp called &4%warpname%!");
+        cfgm.getMessagesCFG().addDefault("Messages.WarpSystem.Warped", "&8[&3System&8] &7You've been warped!");
+        //cfgm.getMessagesCFG().addDefault("Spawn.Permission", "&8[&3System&8] &7You don't have any Permissions");
+        //cfgm.getMessagesCFG().addDefault("Spawn.Set", "&8[&3System&8] &7The Spawn has been set!");
+        //cfgm.getMessagesCFG().addDefault("Spawn.DoesntExist", "&8[&3System&8] &7There is not Spawn set yet!");
+        //cfgm.getMessagesCFG().addDefault("ChatClear.Message", "&8[&3System&8] &7Chat has been cleared!");
+        //cfgm.getMessagesCFG().addDefault("AntiPlugin.Message", "&8[&3System&8] &7Nice try! Good luck, next time!");
+        //cfgm.getMessagesCFG().addDefault("ReloadCMD.Message", "&8[&3System&8] &7LobbySystem2021 has been reloaded! (every LobbySystem Configs)");
+        //cfgm.getMessagesCFG().addDefault("PingCMD.Message", "&8[&3System&8] &7You have a Ping of %ms% ms");
         cfgm.getMessagesCFG().options().copyDefaults(true);
         cfgm.saveMessagesCFG();
         cfgm.reloadMessagesCFG();
@@ -69,11 +71,11 @@ public class main extends JavaPlugin {
         pm.registerEvents(new Respawn(this), this);
         pm.registerEvents(new BypassLimit(), this);
         pm.registerEvents(new AntiPlugin(this), this);
-        //pm.registerEvents(new PlayerInformation(this), this);
         pm.registerEvents(new TeamChat(this), this);
         pm.registerEvents(new DoubleJump(this), this);
         pm.registerEvents(new InvGui(), this);
         //pm.registerEvents(new InvOnJoin(this), this);
+        //pm.registerEvents(new PlayerInformation(this), this);
 
 
 
@@ -81,11 +83,11 @@ public class main extends JavaPlugin {
         getCommand("lobby").setExecutor(new Lobby(this));
         getCommand("chatclear").setExecutor(new ChatClear(this));
         getCommand("cc").setExecutor(new ChatClear(this));
-        this.getCommand("setwarp").setExecutor(new SetWarp(cfgm));
-        getCommand("warp").setExecutor(new Warp(cfgm));
-        getCommand("delwarp").setExecutor(new DelWarp(cfgm));
+        getCommand("setwarp").setExecutor(new SetWarp(this));
+        getCommand("warp").setExecutor(new Warp(this));
+        getCommand("delwarp").setExecutor(new DelWarp(this));
         getCommand("lobbysystem").setExecutor(new ReloadCMD(this));
-        getCommand("ping").setExecutor(new PingCMD(this));
+        getCommand("ping").setExecutor(new PingCMD( this));
         getCommand("bug").setExecutor(new BugCMD(this));
         getCommand("warplist").setExecutor(new WarpList());
 

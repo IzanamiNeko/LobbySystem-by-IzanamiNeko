@@ -11,12 +11,12 @@ import java.io.File;
 
 public class DelWarp implements CommandExecutor {
 
-    ConfigManager cfgm;
+    main plugin;
 
-    public DelWarp(ConfigManager instance) {
-        cfgm = instance;
+
+    public DelWarp(main plugin) {
+        this.plugin = plugin;
     }
-
 
 
     @Override
@@ -26,15 +26,15 @@ public class DelWarp implements CommandExecutor {
             if (args.length > 0) {
                 File file = new File("plugins/LobbySystem2021/Warps/", args[0] + ".yml");
                 if (file.exists()) {
-                    String msg = cfgm.getMessagesCFG().getString("WarpSystem.DelWarp").replace("&", "§").replaceAll("%warpname%", args[0]);
+                    String msg = this.plugin.getConfig().getString("WarpSystem.DelWarp").replace("&", "§").replaceAll("%warpname%", args[0]);
                     p.sendMessage(msg);
                     file.delete();
                 } else {
-                    String msg = cfgm.getMessagesCFG().getString("WarpSystem.NoWarp").replace("&", "§").replaceAll("%warpname%", args[0]);
+                    String msg = this.plugin.getConfig().getString("WarpSystem.NoWarp").replace("&", "§").replaceAll("%warpname%", args[0]);
                     p.sendMessage(msg);
                 }
             } else {
-                String msg = cfgm.getMessagesCFG().getString("General.NoPerm").replace("&", "§");
+                String msg = this.plugin.getConfig().getString("General.NoPerm").replace("&", "§");
                 p.sendMessage(msg);
             }
         }

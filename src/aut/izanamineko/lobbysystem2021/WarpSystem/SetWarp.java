@@ -1,29 +1,24 @@
 package aut.izanamineko.lobbysystem2021.WarpSystem;
 
-import aut.izanamineko.lobbysystem2021.ConfigManager;
 import aut.izanamineko.lobbysystem2021.main;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class SetWarp implements CommandExecutor {
 
-    ConfigManager cfgm;
+    main plugin;
 
-    public SetWarp(ConfigManager instance) {
-        cfgm = instance;
+
+    public SetWarp(main plugin) {
+        this.plugin = plugin;
     }
-
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String strings, String[] args) {
@@ -31,14 +26,12 @@ public class SetWarp implements CommandExecutor {
         if (p.hasPermission("LobbySystem.SetWarp") || p.isOp()) {
             if (sender instanceof Player) {
                 if (args.length < 1) {
-                    String msg = cfgm.getMessagesCFG().getString("WarpSystem.SetCMD").replace("&", "§");
+                    String msg = this.plugin.getConfig().getString("WarpSystem.SetCMD").replace("&", "§");
                     p.sendMessage(msg);
                     return true;
                 }
                 if (args.length > 0) {
                     File file = new File("plugins/LobbySystem2021/Warps/" + args[0] + ".yml");
-
-
                     if (!file.exists()) {
                         try {
                             file.createNewFile();
@@ -58,16 +51,16 @@ public class SetWarp implements CommandExecutor {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        String msg = cfgm.getMessagesCFG().getString("WarpSystem.SetWarp").replace("&", "§").replaceAll("%warpname%", args[0]);
+                        String msg = this.plugin.getConfig().getString("Messages.WarpSystem.SetWarp").replace("&", "§").replaceAll("%warpname%", args[0]);
                         p.sendMessage(msg);
                     } else {
-                        String msg = cfgm.getMessagesCFG().getString("WarpSystem.NoWarp").replace("&", "§");
+                        String msg = this.plugin.getConfig().getString("Messages.WarpSystem.NoWarp").replace("&", "§");
                         p.sendMessage(msg);
                     }
                 }
             }
         } else {
-            String msg = cfgm.getMessagesCFG().getString("General.NoPerm").replace("&", "§").replaceAll("%player%", p.getDisplayName());
+            String msg = this.plugin.getConfig().getString("General.NoPerm").replace("&", "§").replaceAll("%player%", p.getDisplayName());
             p.sendMessage(msg);
         }
         return true;

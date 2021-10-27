@@ -1,6 +1,6 @@
 name: LobbySystem2021
 main: aut.izanamineko.lobbysystem2021.main
-version: 2021.2.0
+version: 2021.2.1
 commands:
   chatclear:
     description: Use /chatclear to Clear the Chat
@@ -24,3 +24,5 @@ commands:
     description: Use /ping to see your Latency
   bug:
     description: Use /bug to report a bug
+  kit:
+    description: testing

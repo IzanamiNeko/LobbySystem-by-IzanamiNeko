@@ -1,5 +1,6 @@
 package aut.izanamineko.lobbysystem2021.commands;
 
+import aut.izanamineko.lobbysystem2021.ConfigManager;
 import aut.izanamineko.lobbysystem2021.main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -14,18 +15,24 @@ import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
+import java.util.UUID;
 
 public class BugCMD implements CommandExecutor {
-    private main plugin;
+
+     main plugin;
 
 
     public BugCMD(main plugin) {
         this.plugin = plugin;
     }
 
+
+
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player)sender;
         String bug = "";
+
                 if (sender instanceof Player) {
             if (args.length < 1) {
                 p.sendMessage("Nutze /bug <bug> einen Bug zu reporten!");
@@ -54,7 +61,11 @@ public class BugCMD implements CommandExecutor {
                     YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
                     cfg.options().header("Bug-Report by IzanamiNeko");
                     cfg.set("Displayname", p.getDisplayName());
+                    cfg.set("UUID", p.getUniqueId());
                     cfg.set("Bug-Report", bug);
+                    cfg.set("Ping (MS)", p.getPing());
+                    cfg.set("Location", p.getLocation());
+                    cfg.set("Time", new  Date(System.currentTimeMillis()));
                     try {
                         cfg.save(file);
                     } catch (IOException e) {
