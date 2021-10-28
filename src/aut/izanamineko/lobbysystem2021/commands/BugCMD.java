@@ -10,13 +10,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import java.util.UUID;
+import java.util.Random;
 
 public class BugCMD implements CommandExecutor {
 
@@ -33,22 +31,27 @@ public class BugCMD implements CommandExecutor {
         Player p = (Player)sender;
         String bug = "";
 
+        Random rand = new Random();
+        int upperbound = 2147483647;
+        int int_random = rand.nextInt(upperbound);
+
+
                 if (sender instanceof Player) {
-            if (args.length < 1) {
-                p.sendMessage("Nutze /bug <bug> einen Bug zu reporten!");
-                return true;
-            }
+                    if (args.length < 1) {
+                        p.sendMessage("Nutze /bug <bug> einen Bug zu reporten!");
+                        return true;
+                    }
             for (int i = 0; i < args.length; i++)
                 bug = bug + args[i] + " ";
             for (Player players : Bukkit.getOnlinePlayers()) {
                 if (players.hasPermission("LobbySystem.ReceiveBug")) {
-                    String msg = this.plugin.getConfig().getString("BugCMD.Message").replaceAll("%player%", sender.getName()).replace("&", "§");
+                    String msg = this.plugin.getConfig().getString("BugCMD.Message").replaceAll("%player%", sender.getName()).replace("&", "§").replaceAll("%id%", String.valueOf(int_random));
                     players.sendMessage(msg);
-                    String msg2 = this.plugin.getConfig().getString("BugCMD.BugReport").replace("&", "§").replaceAll("%bug%", bug);
-                    players.sendMessage(msg2);
+                    //String msg2 = this.plugin.getConfig().getString("BugCMD.BugReport").replace("&", "§").replaceAll("%bug%", bug);
+                    //players.sendMessage(msg2);
                     players.playSound(players.getLocation(), Sound.BLOCK_ANVIL_USE, 10.0F, 10.0F);
-                    File file = new File("plugins/LobbySystem2021/ReportBugs/Bug found by " + p.getDisplayName() + ".yml");
-                    if(!file.exists()){
+                    File file = new File("plugins/LobbySystem2021/Bugs/ID" + int_random + ".yml");
+                    if (!file.exists()) {
                         try {
                             file.createNewFile();
                             Bukkit.getConsoleSender().sendMessage("A new Bug got reported");
@@ -65,7 +68,7 @@ public class BugCMD implements CommandExecutor {
                     cfg.set("Bug-Report", bug);
                     cfg.set("Ping (MS)", p.getPing());
                     cfg.set("Location", p.getLocation());
-                    cfg.set("Time", new  Date(System.currentTimeMillis()));
+                    cfg.set("Time", new Date(System.currentTimeMillis()));
                     try {
                         cfg.save(file);
                     } catch (IOException e) {

@@ -1,6 +1,8 @@
 package aut.izanamineko.lobbysystem2021;
 
 
+import aut.izanamineko.lobbysystem2021.SpawnSystem.SetSpawn;
+import aut.izanamineko.lobbysystem2021.SpawnSystem.Spawn;
 import aut.izanamineko.lobbysystem2021.WarpSystem.DelWarp;
 import aut.izanamineko.lobbysystem2021.WarpSystem.SetWarp;
 import aut.izanamineko.lobbysystem2021.WarpSystem.Warp;
@@ -9,13 +11,10 @@ import aut.izanamineko.lobbysystem2021.commands.*;
 import aut.izanamineko.lobbysystem2021.events.*;
 import aut.izanamineko.lobbysystem2021.gui.InvGui;
 import org.bukkit.ChatColor;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.io.IOException;
 
 
 public class main extends JavaPlugin {
@@ -28,9 +27,10 @@ public class main extends JavaPlugin {
         System.out.println(ChatColor.GREEN + "LobbySystem V2021 is starting....");
 
         createWarpsDirectory();
+        createBugDirectory();
         loadListener();
         loadConfig();
-        loadConfigManager();
+        //loadConfigManager();
     }
 
 
@@ -79,8 +79,8 @@ public class main extends JavaPlugin {
 
 
 
-        getCommand("setlobby").setExecutor(new SetLobby(this));
-        getCommand("lobby").setExecutor(new Lobby(this));
+        getCommand("setspawn").setExecutor(new SetSpawn(this));
+        getCommand("spawn").setExecutor(new Spawn(this));
         getCommand("chatclear").setExecutor(new ChatClear(this));
         getCommand("cc").setExecutor(new ChatClear(this));
         getCommand("setwarp").setExecutor(new SetWarp(this));
@@ -157,12 +157,19 @@ public class main extends JavaPlugin {
         //BugCMD
 
 
-        getConfig().addDefault("BugCMD.Message", "&8[&3System&8] &c%player% &7reported a Bug");
+        getConfig().addDefault("BugCMD.Message", "&8[&3System&8] &c%player% &7reported a Bug with the ID %id%");
         getConfig().addDefault("BugCMD.BugReport", "&8[&3System&8] &7%bug%");
 
         getConfig().options().copyDefaults(true);
         saveConfig();
         reloadConfig();
+    }
+
+    public void createBugDirectory() {
+        File bug = new File("plugins/LobbySystem2021/Bugs");
+        if(!bug.exists()){
+            bug.mkdir();
+        }
     }
 
     public void createWarpsDirectory() {

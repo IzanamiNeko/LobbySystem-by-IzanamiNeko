@@ -1,4 +1,4 @@
-package aut.izanamineko.lobbysystem2021.commands;
+package aut.izanamineko.lobbysystem2021.SpawnSystem;
 
 import aut.izanamineko.lobbysystem2021.main;
 import org.bukkit.ChatColor;
@@ -12,11 +12,11 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.io.IOException;
 
-public class SetLobby implements CommandExecutor {
+public class SetSpawn implements CommandExecutor {
 
     main plugin;
 
-    public SetLobby(main instance) {
+    public SetSpawn(main instance) {
         this.plugin = instance;
     }
 
@@ -31,8 +31,8 @@ public class SetLobby implements CommandExecutor {
             p.sendMessage(msg);
             return true;
         }
-        //File file = new File("plugins/LobbySystem2021/spawnloc.yml");
-        File file = new File(this.plugin.getConfig().getString("Spawn.Path"));
+        File file = new File("plugins/LobbySystem2021/spawnloc.yml");
+        //File file = new File(this.plugin.getConfig().getString("Spawn.Path"));
         if (!file.exists())
             try {
                 file.createNewFile();

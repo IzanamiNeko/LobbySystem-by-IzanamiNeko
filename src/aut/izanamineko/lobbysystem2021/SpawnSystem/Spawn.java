@@ -1,4 +1,4 @@
-package aut.izanamineko.lobbysystem2021.commands;
+package aut.izanamineko.lobbysystem2021.SpawnSystem;
 
 import aut.izanamineko.lobbysystem2021.main;
 import org.bukkit.Bukkit;
@@ -13,11 +13,11 @@ import org.bukkit.entity.Player;
 
 import java.io.File;
 
-public class Lobby implements CommandExecutor {
+public class Spawn implements CommandExecutor {
 
     main plugin;
 
-    public Lobby(main instance) {
+    public Spawn(main instance) {
         this.plugin = instance;
     }
 

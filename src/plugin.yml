@@ -6,9 +6,9 @@ commands:
     description: Use /chatclear to Clear the Chat
   cc:
     description: Use /cc to Clear the Chat
-  setlobby:
+  setspawn:
     description: Use /setlobby to set the lobby.
-  lobby:
+  spawn:
     description: Use /lobby to teleport to the Spawn.s
   setwarp:
     description: Use /setwarp "name" to set a warppoint

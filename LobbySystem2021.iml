@@ -9,5 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="paper-1.17.1-353" level="project" />
     <orderEntry type="library" name="spigot-1.17.1" level="project" />
+    <orderEntry type="library" name="spigot-1.17.11" level="project" />
+    <orderEntry type="library" name="paper-1.17.1-3531" level="project" />
   </component>
 </module>

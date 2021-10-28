@@ -3,6 +3,16 @@ TODO:
 Warplist.yml stores every Warppoint who has been set and deletes them if deleted
 /warplist [CMD] so you can see what Warppoints actually have been set!
 
-Scoreboard
-InvGUI
-TabGUI
+
+Bug Files with IDs = Finished
+
+
+- Jail Feature
+- Player spawn within an area you set
+- Scoreboard
+- InvGUI
+- TabGUI
+- Warplist command
+- Sign Warp
+-
+

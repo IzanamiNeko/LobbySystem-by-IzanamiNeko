@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="paper-1.17.1-3531">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Server_PC/Server/Minecraft Server/paper-1.17.1-353.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
