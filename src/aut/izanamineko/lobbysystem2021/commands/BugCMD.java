@@ -41,7 +41,7 @@ public class BugCMD implements CommandExecutor {
             for (int i = 0; i < args.length; i++)
                 bug = bug + args[i] + " ";
             for (Player players : Bukkit.getOnlinePlayers()) {
-                if (players.hasPermission("LobbySystem2021.ReceiveBug")) {
+                if (players.hasPermission("LobbySystem.ReceiveBug")) {
                     String msg = this.plugin.getConfig().getString("BugCMD.Message").replaceAll("%player%", sender.getName()).replace("&", "§");
                     players.sendMessage(msg);
                     String msg2 = this.plugin.getConfig().getString("BugCMD.BugReport").replace("&", "§").replaceAll("%bug%", bug);

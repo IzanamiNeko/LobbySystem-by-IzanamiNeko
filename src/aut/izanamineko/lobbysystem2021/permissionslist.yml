@@ -1,0 +1,14 @@
+#Permissions List by IzanamiNeko
+Permissions:
+  - LobbySystem.CommandProtection
+  - LobbySystem.Lobby
+  - LobbySystem.SetLobby
+  - LobbySystem.PlayerLimit.Bypass
+  - LobbySystem.ChatClear
+  - LobbySystem.SetWarp
+  - LobbySystem.Warp
+  - LobbySystem.DelWarp
+  - LobbySystem.Reload
+  - LobbySystem.HelpCMD
+  - LobbySystem.TeamChat
+  - LobbySystem.ReceiveBug
