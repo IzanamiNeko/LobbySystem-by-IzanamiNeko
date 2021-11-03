@@ -1,6 +1,6 @@
 package aut.izanamineko.lobbysystem2021.WarpSystem;
 
-import aut.izanamineko.lobbysystem2021.ConfigManager;
+import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
 import aut.izanamineko.lobbysystem2021.main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -19,6 +19,7 @@ public class Warp implements CommandExecutor {
 
     main plugin;
 
+    MessagesManager mm = new MessagesManager();
 
     public Warp(main plugin) {
         this.plugin = plugin;
@@ -27,40 +28,50 @@ public class Warp implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
         Player p = (Player) sender;
-        if (cmd.getName().equals("warp")) {
             if (p.hasPermission("LobbySystem.Warp") || p.isOp()) {
+
+
                 if (args.length > 0) {
-                    File file = new File("plugins/LobbySystem2021/Warps/", args[0] + ".yml");
+                    File file = new File("plugins/LobbySystem2021/Warps/" + args[0] + ".yml");
+
                     if (!file.exists()) {
-                        String msg = this.plugin.getConfig().getString("WarpSystem.NoWarp").replace("&", "§").replaceAll("%warpname%", args[0]);
+                        String msg = this.mm.getConfig().getString("Messages.WarpSystem.NoWarp").replace("&", "§").replaceAll("%warpname%", args[0]);
                         p.sendMessage(msg);
                         return true;
+                    } else {
+
+
+                        //Loading Config Values into the Game
+                        YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+                        double x = cfg.getDouble("Location.X");
+                        double y = cfg.getDouble("Location.Y");
+                        double z = cfg.getDouble("Location.Z");
+                        float yaw = (float) cfg.getDouble("Location.Yaw");
+                        float pitch = (float) cfg.getDouble("Location.Pitch");
+                        String worldname = cfg.getString("Location.World");
+                        World welt = Bukkit.getWorld(worldname);
+                        Location loc = p.getLocation();
+                        loc.setX(x);
+                        loc.setY(y);
+                        loc.setZ(z);
+                        loc.setYaw(yaw);
+                        loc.setPitch(pitch);
+                        loc.setWorld(welt);
+                        //Teleports player to the location in the CONFIG
+                        p.teleport(loc);
+
+
+                        //String for sending the Player the Message he has been warped
+                        String msg = this.mm.getConfig().getString("Messages.WarpSystem.Warped").replace("&", "§");
+                        p.sendMessage(msg);
+
                     }
-                    YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);
-                    double x = cfg.getDouble("Location.X");
-                    double y = cfg.getDouble("Location.Y");
-                    double z = cfg.getDouble("Location.Z");
-                    float yaw = (float) cfg.getDouble("Location.Yaw");
-                    float pitch = (float) cfg.getDouble("Location.Pitch");
-                    String worldname = cfg.getString("Location.World");
-                    World welt = Bukkit.getWorld(worldname);
-                    Location loc = p.getLocation();
-                    loc.setX(x);
-                    loc.setY(y);
-                    loc.setZ(z);
-                    loc.setYaw(yaw);
-                    loc.setPitch(pitch);
-                    loc.setWorld(welt);
-                    p.teleport(loc);
-                    String msg = this.plugin.getConfig().getString("WarpSystem.Warped").replace("&", "§");
+                }
+                } else {
+                    String msg = this.mm.getConfig().getString("General.NoPermissions").replace("&", "§").replaceAll("%player%", p.getName());
                     p.sendMessage(msg);
                 }
-            } else {
-                String msg = this.plugin.getConfig().getString("General.NoPerm").replace("&", "§").replaceAll("%player%", p.getName());
-                p.sendMessage(msg);
-            }
-
-        }
         return true;
     }
 }
+

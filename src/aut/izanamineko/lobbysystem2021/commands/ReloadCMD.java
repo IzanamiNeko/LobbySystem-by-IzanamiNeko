@@ -1,6 +1,7 @@
 package aut.izanamineko.lobbysystem2021.commands;
 
-import aut.izanamineko.lobbysystem2021.ConfigManager;
+import aut.izanamineko.lobbysystem2021.Utils.PermissionsListCFG;
+import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
 import aut.izanamineko.lobbysystem2021.main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,8 +12,15 @@ public class ReloadCMD implements CommandExecutor {
 
     main plugin;
 
+    MessagesManager mm = new MessagesManager();
+    PermissionsListCFG cfgm = new PermissionsListCFG();
+
     public ReloadCMD(main instance) {
         this.plugin = instance;
+    }
+
+    public ReloadCMD(PermissionsListCFG instance){
+        cfgm = instance;
     }
 
     @Override
@@ -24,12 +32,13 @@ public class ReloadCMD implements CommandExecutor {
         }
         if(cmd.getName().equalsIgnoreCase("lobbysystem")){
             if(!p.hasPermission("LobbySystem.Reload") || !p.isOp()) {
-                String msg = this.plugin.getConfig().getString("General.NoPerms").replace("&", "§");
+                String msg = this.mm.getConfig().getString("Messages.General.NoPermissions").replace("&", "§");
                 p.sendMessage(msg);
                 return true;
             }
             if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
                 this.plugin.reloadConfig();
+                this.mm.load();
                 String msg = this.plugin.getConfig().getString("ReloadCMD.Message").replace("&", "§");
                 p.sendMessage(msg);
                 return true;

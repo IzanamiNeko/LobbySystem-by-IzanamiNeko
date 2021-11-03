@@ -1,9 +1,0 @@
-# WarpSystemConfig by IzanamiNeko
-Messages:
-  WarpSystem:
-    SetCMD: '&8[&3System&8] &7Use /setwarp [warpname]!'
-    WarpCMD: '&8[&3System&8] &7Use /warp [warpname]!'
-    SetWarp: '&8[&3System&8] &7The Warp &4%warpname%  &7has been set!'
-    DelWarp: '&8[&3System&8] &7The Warp &4%warpname%  &7has been deleted!'
-    NoWarp: '&8[&3System&8] &7There is no Warp called &4%warpname%!'
-    Warped: '&8[&3System&8] &7You''ve been warped!'

@@ -28,8 +28,10 @@ public class JQEvent implements Listener {
         msg = msg.replace("&", "§");
         msg = msg.replaceAll("%player%", p.getDisplayName());
         if (this.plugin.getConfig().getString("Messages.Join.Show").equals("true")) {
-            e.setJoinMessage(msg);
+            p.sendMessage(msg);
+            e.setJoinMessage("");
         } else {
+            p.sendMessage("");
             e.setJoinMessage("");
         }
 
@@ -42,8 +44,10 @@ public class JQEvent implements Listener {
         Player p = e.getPlayer();
         String msg = this.plugin.getConfig().getString("Messages.Quit.Message").replace("&", "§").replaceAll("%player%", p.getDisplayName());
         if (this.plugin.getConfig().getString("Messages.Quit.Show").equals("true")) {
-            e.setQuitMessage(msg);
+            p.sendMessage(msg);
+            e.setQuitMessage("");
         } else {
+            p.sendMessage(msg);
             e.setQuitMessage("");
         }
 

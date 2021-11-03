@@ -1,6 +1,6 @@
 package aut.izanamineko.lobbysystem2021.commands;
 
-import aut.izanamineko.lobbysystem2021.ConfigManager;
+import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
 import aut.izanamineko.lobbysystem2021.main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -20,6 +20,8 @@ public class BugCMD implements CommandExecutor {
 
      main plugin;
 
+     MessagesManager mm = new MessagesManager();
+
 
     public BugCMD(main plugin) {
         this.plugin = plugin;
@@ -38,14 +40,17 @@ public class BugCMD implements CommandExecutor {
 
                 if (sender instanceof Player) {
                     if (args.length < 1) {
-                        p.sendMessage("Nutze /bug <bug> einen Bug zu reporten!");
+                        String msg = this.mm.getConfig().getString("Messages.BugCMD.Usage").replace("&", "§");
+                        p.sendMessage(msg);
                         return true;
                     }
             for (int i = 0; i < args.length; i++)
                 bug = bug + args[i] + " ";
             for (Player players : Bukkit.getOnlinePlayers()) {
+                String sendmsg = this.mm.getConfig().getString("Messages.BugCMD.BugReported").replace("&", "§").replaceAll("%id%", String.valueOf(int_random));
+                p.sendMessage(sendmsg);
                 if (players.hasPermission("LobbySystem.ReceiveBug")) {
-                    String msg = this.plugin.getConfig().getString("BugCMD.Message").replaceAll("%player%", sender.getName()).replace("&", "§").replaceAll("%id%", String.valueOf(int_random));
+                    String msg = this.mm.getConfig().getString("Messages.BugCMD.ID-Message").replaceAll("%player%", sender.getName()).replace("&", "§").replaceAll("%id%", String.valueOf(int_random));
                     players.sendMessage(msg);
                     //String msg2 = this.plugin.getConfig().getString("BugCMD.BugReport").replace("&", "§").replaceAll("%bug%", bug);
                     //players.sendMessage(msg2);
@@ -80,7 +85,7 @@ public class BugCMD implements CommandExecutor {
 
             }
         } else {
-            System.out.println(ChatColor.RED + "Dies ist ein Ingame Command!");
+            System.out.println(ChatColor.RED + "This CMD is only for In-Game usable");
         }
         return true;
     }

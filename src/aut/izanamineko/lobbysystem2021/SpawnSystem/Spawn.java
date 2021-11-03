@@ -1,5 +1,6 @@
 package aut.izanamineko.lobbysystem2021.SpawnSystem;
 
+import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
 import aut.izanamineko.lobbysystem2021.main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -17,6 +18,8 @@ public class Spawn implements CommandExecutor {
 
     main plugin;
 
+    MessagesManager mm = new MessagesManager();
+
     public Spawn(main instance) {
         this.plugin = instance;
     }
@@ -30,14 +33,14 @@ public class Spawn implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (!p.hasPermission("LobbySystem.Lobby")) {
-            String msg = this.plugin.getConfig().getString("General.NoPerm").replace("&", "§");
+            String msg = this.mm.getConfig().getString("Messages.General.NoPermissions").replace("&", "§").replaceAll("%player%", p.getName());
             p.sendMessage(msg);
             return true;
         }
 
         File file = new File("plugins/LobbySystem2021/spawnloc.yml");
         if (!file.exists()) {
-            String msg = this.plugin.getConfig().getString("Spawn.DoesntExist").replace("&", "§");
+            String msg = this.mm.getConfig().getString("Messages.Spawn.DoesntExist").replace("&", "§");
             p.sendMessage(msg);
             return true;
         }
