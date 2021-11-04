@@ -3,6 +3,7 @@ package aut.izanamineko.lobbysystem2021;
 
 import aut.izanamineko.lobbysystem2021.SpawnSystem.SetSpawn;
 import aut.izanamineko.lobbysystem2021.SpawnSystem.Spawn;
+import aut.izanamineko.lobbysystem2021.TabScore.bScoreboard;
 import aut.izanamineko.lobbysystem2021.Utils.PermissionsListCFG;
 import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
 import aut.izanamineko.lobbysystem2021.WarpSystem.DelWarp;
@@ -11,14 +12,14 @@ import aut.izanamineko.lobbysystem2021.WarpSystem.Warp;
 import aut.izanamineko.lobbysystem2021.WarpSystem.WarpList;
 import aut.izanamineko.lobbysystem2021.commands.*;
 import aut.izanamineko.lobbysystem2021.events.*;
-import aut.izanamineko.lobbysystem2021.gui.InvGui;
+import net.luckperms.api.LuckPerms;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class main extends JavaPlugin {
@@ -27,6 +28,10 @@ public class main extends JavaPlugin {
 
     private MessagesManager mm = new MessagesManager();
     private PermissionsListCFG plcfg = new PermissionsListCFG();
+
+
+
+
 
     @Override
     public void onEnable() {        //Beim Start wird alles was in onEnable steht ausgeführt
@@ -51,15 +56,16 @@ public class main extends JavaPlugin {
     private void loadListener() {
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new JQEvent(this), this);
-        //pm.registerEvents(new GeneralEvent(this), this);
         pm.registerEvents(new Respawn(this), this);
         pm.registerEvents(new BypassLimit(), this);
         pm.registerEvents(new AntiPlugin(this), this);
         pm.registerEvents(new TeamChat(this), this);
+        pm.registerEvents(new bScoreboard(this), this);
         //pm.registerEvents(new DoubleJump(this), this);
-        pm.registerEvents(new InvGui(), this);
+        //pm.registerEvents(new InvOnJoin(this), this);
         //pm.registerEvents(new InvOnJoin(this), this);
         //pm.registerEvents(new PlayerInformation(this), this);
+        //pm.registerEvents(new GeneralEvent(this), this);
     }
 
     private void loadCommands() {

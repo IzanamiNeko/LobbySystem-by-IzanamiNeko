@@ -50,6 +50,7 @@ public class MessagesManager {
         this.config.addDefault("Messages.Spawn.Permission", "&8[&3System&8] &7You don't have any Permissions");
         this.config.addDefault("Messages.Quit.Message", "&8[&3System&8] &7Goodbye %player%");
         this.config.addDefault("Messages.Join.Message", "&8[&3System&8] &7Welcome %player%");
+        this.config.addDefault("Messages.Join.Sound", "ENTITY_FIREWORK_ROCKET_LARGE_BLAST");
         this.config.addDefault("Messages.HelpList.Line1", "&c----------- &6[LobbySystem] &c-----------");
         this.config.addDefault("Messages.HelpList.Line2", "TEST");
         this.config.addDefault("Messages.HelpList.Line3", "TEST");

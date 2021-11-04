@@ -32,10 +32,30 @@ public class GeneralEvent implements Listener {
 
 
     public void onEntityDamage(EntityDamageEvent noDamage) {
-        if (!(noDamage.getEntity() instanceof Player))
+        Player p = ((Player) noDamage.getEntity()).getPlayer();
+        if (!(noDamage.getEntity() instanceof Player)){
             return;
-        if(noDamage.getCause().equals(EntityDamageEvent.DamageCause.FALL) || noDamage.getCause().equals(EntityDamageEvent.DamageCause.DROWNING)
-                && ((Player)noDamage.getEntity()).hasPermission("LobbySystem.NoDamage"))
-            noDamage.setCancelled(true);
+        }
+        if(p.hasPermission("LobbySystem.NoFalldamage")){
+            if(noDamage.getCause().equals(EntityDamageEvent.DamageCause.FALL)){
+                noDamage.setCancelled(true);
+
+            } else {
+                noDamage.setCancelled(false);
+            }
+        }
+    }
+    public void onDrowning(EntityDamageEvent noDrown){
+        Player p = ((Player) noDrown.getEntity()).getPlayer();
+        if (!(noDrown.getEntity() instanceof Player)){
+            return;
+        }
+        if(p.hasPermission("LobbySystem.NoDrown")){
+        if(noDrown.getCause().equals(EntityDamageEvent.DamageCause.DROWNING)){
+                noDrown.setCancelled(true);
+            } else {
+                noDrown.setCancelled(false);
+        }
+        }
     }
 }

@@ -1,6 +1,6 @@
 package aut.izanamineko.lobbysystem2021.commands;
 
-import aut.izanamineko.lobbysystem2021.ConfigManager;
+import aut.izanamineko.lobbysystem2021.Utils.PermissionsListCFG;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,9 +10,9 @@ import org.bukkit.inventory.ItemStack;
 
 public class test implements CommandExecutor {
 
-    ConfigManager cfgm;
+    PermissionsListCFG cfgm;
 
-    public test(ConfigManager instance) {
+    public test(PermissionsListCFG instance) {
         this.cfgm = instance;
     }
 

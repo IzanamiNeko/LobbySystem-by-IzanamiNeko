@@ -1,0 +1,28 @@
+//PingCMD
+        //getConfig().addDefault("PingCMD.Message", "&8[&3System&8] &7You have a Ping of %ms% ms");
+
+        //BugCMD
+
+
+        //getConfig().addDefault("BugCMD.Message", "&8[&3System&8] &c%player% &7reported a Bug with the ID %id%");
+        getConfig().addDefault("BugCMD.BugReport", "&8[&3System&8] &7%bug%");
+
+
+        //WarpSystem
+                //getConfig().addDefault("WarpSystem.Active", "true");
+                /*getConfig().addDefault("WarpSystem.SetCMD", "&8[&3System&8] &7Use /setwarp [warpname]!");
+                getConfig().addDefault("WarpSystem.WarpCMD", "&8[&3System&8] &7Use /warp [warpname]!");
+                getConfig().addDefault("WarpSystem.SetWarp", "&8[&3System&8] &7The Warp &4%warpname%  &7has been set!");
+                getConfig().addDefault("WarpSystem.DelWarp", "&8[&3System&8] &7The Warp &4%warpname%  &7has been deleted!");
+                getConfig().addDefault("WarpSystem.NoWarp", "&8[&3System&8] &7There is no Warp called &4%warpname%!");
+                getConfig().addDefault("WarpSystem.Warped", "&8[&3System&8] &7You've been warped!");*/
+
+             //General Events
+                    // getConfig().addDefault("Config.GeneralEvents.dropItem", "false");
+
+
+
+        //String gruppe = PermissionsEx.getUser(e.getPlayer()).getGroupNames()[0];
+        //String prefix = PermissionsEx.getUser(e.getPlayer()).getGroups()[0].getPrefix().replace("&", ");
+
+        String server = Bukkit.getServer().getName().replace("&", "§");
