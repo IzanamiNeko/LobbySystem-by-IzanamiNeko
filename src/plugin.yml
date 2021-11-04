@@ -1,6 +1,6 @@
 name: LobbySystem2021
 main: aut.izanamineko.lobbysystem2021.main
-version: 2021.2.3-BETA
+version: 2021.3.0-BETA
 commands:
   chatclear:
     description: Use /chatclear to Clear the Chat
