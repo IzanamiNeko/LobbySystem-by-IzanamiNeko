@@ -29,6 +29,12 @@ public class main extends JavaPlugin {
     private MessagesManager mm = new MessagesManager();
     private PermissionsListCFG plcfg = new PermissionsListCFG();
 
+    /*RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
+    if (provider != null) {
+        LuckPerms api = provider.getProvider();
+
+    }*/
+
 
 
 

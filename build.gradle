@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group 'aut.izanamineko.plugin'
+version '2021.3.0-BETA'
+
+repositories {
+    mavenCentral()
+    maven { url = uri("https://papermc.io/repo/repository/maven-public/") }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
+    compileOnly 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
+    compileOnly 'net.luckperms:api:5.3'
+}
+
+test {
+    useJUnitPlatform()
+}
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+}

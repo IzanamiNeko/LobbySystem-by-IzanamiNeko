@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="LobbySystemV2021.3.0-BETA">
-    <output-path>$PROJECT_DIR$/../Server_PC/Server/Minecraft Server/plugins</output-path>
-    <root id="archive" name="LobbySystemV2021.3.0-BETA.jar">
-      <element id="module-output" name="LobbySystem2021" />
-    </root>
-  </artifact>
-</component>
