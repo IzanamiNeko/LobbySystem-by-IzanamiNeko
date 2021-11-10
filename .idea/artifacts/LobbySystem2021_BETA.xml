@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LobbySystem2021-BETA">
+    <output-path>$PROJECT_DIR$/out/artifacts/LobbySystem2021_BETA</output-path>
+    <root id="archive" name="LobbySystem2021-BETA.jar">
+      <element id="module-output" name="LobbySystem2021.main" />
+    </root>
+  </artifact>
+</component>
