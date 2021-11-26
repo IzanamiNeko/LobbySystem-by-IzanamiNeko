@@ -43,6 +43,7 @@ public class MessagesManager {
         this.config.addDefault("Messages.WarpSystem.WarpExists", "&8[&3System&8] &7The Warp &4%warpname% &7exists already!");
         this.config.addDefault("Messages.General.NoPermissions", "&8[&3System&8] &7You dont have permissions... &4[ &c%player% &4]");
         this.config.addDefault("Messages.General.Ping", "&8[&3System&8] &7You have a Ping of %ms% ms");
+        this.config.addDefault("Messages.General.Reload", "&8[&3System&8] &7LobbySystem2021 has been reloaded! (only the config.yml)");
         this.config.addDefault("Messages.BugCMD.Usage", "&8[&3System&8] &7Use /bug <bug to report> to report a Bug");
         this.config.addDefault("Messages.BugCMD.ID-Message", "&8[&3System&8] &c%player% &7reported a Bug with the ID %id%");
         this.config.addDefault("Messages.BugCMD.BugReported", "&8[&3System&8] &7Your bug has been reported, please save this ID %id%");
@@ -62,6 +63,7 @@ public class MessagesManager {
         this.config.addDefault("Messages.HelpList.Line9", "&c----------- &6[LobbySystem] &c-----------");
         this.config.addDefault("Messages.AntiPlugin.Message", "&8[&3System&8] &7Nice try! Good luck, next time!");
         this.config.addDefault("Messages.ChatClear.Message", "&8[&3System&8] &7Chat has been cleared!");
+        this.config.addDefault("Messages.Chat-Format.Format", "%luckperms_prefix% %player_name%:");
         this.config.options().header("LobbySystem2021 MESSAGES CONFIG by IzanamiNeko");
         this.config.options().copyDefaults(true);
         save();

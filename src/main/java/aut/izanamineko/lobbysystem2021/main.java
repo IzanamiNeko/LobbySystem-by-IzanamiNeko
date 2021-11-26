@@ -12,15 +12,11 @@ import aut.izanamineko.lobbysystem2021.WarpSystem.Warp;
 import aut.izanamineko.lobbysystem2021.WarpSystem.WarpList;
 import aut.izanamineko.lobbysystem2021.commands.*;
 import aut.izanamineko.lobbysystem2021.events.*;
-import net.luckperms.api.LuckPerms;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-
 
 public class main extends JavaPlugin {
 
@@ -29,11 +25,7 @@ public class main extends JavaPlugin {
     private MessagesManager mm = new MessagesManager();
     private PermissionsListCFG plcfg = new PermissionsListCFG();
 
-    /*RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
-    if (provider != null) {
-        LuckPerms api = provider.getProvider();
 
-    }*/
 
 
 
@@ -101,18 +93,17 @@ public class main extends JavaPlugin {
         getConfig().addDefault("ChatClear.AllChat", "true");
         getConfig().addDefault("ChatClear.PlayerChat", "false");
 
-        getConfig().addDefault("ChatClear.Message", "&8[&3System&8] &7Chat has been cleared!");
-        getConfig().addDefault("Config.GeneralEvents.dropItem", "true");
+        //getConfig().addDefault("Config.GeneralEvents.dropItem", "true");
 
         //General Purpose
         getConfig().addDefault("AntiPlugin.Enabled", "false");
-        getConfig().addDefault("ReloadCMD.Message", "&8[&3System&8] &7LobbySystem2021 has been reloaded! (only the config.yml)");
 
         //HelpList
         getConfig().addDefault("HelpList.Enabled", "false");
         ///TeamChat
         getConfig().addDefault("TeamChat.Enabled", "true");
         getConfig().addDefault("TeamChat.Prefix", "&e[&bTeamChat&e] %player%  >> &r");
+        getConfig().addDefault("Chat-Format.Enabled", "true");
 
         //DoubleJump
         getConfig().addDefault("DoubleJump.Enabled", "true");

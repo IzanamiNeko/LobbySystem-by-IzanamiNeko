@@ -26,7 +26,7 @@ public class SetSpawn implements CommandExecutor {
             return true;
         }
         Player p = (Player)sender;
-        if (!p.hasPermission("LobbySystem.SetLobby")) {
+        if (!p.hasPermission("LobbySystem.SetSpawn")) {
             String msg = this.plugin.getConfig().getString("Spawn.Permissions").replace("&", "§");
             p.sendMessage(msg);
             return true;

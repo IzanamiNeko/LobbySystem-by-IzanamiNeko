@@ -3,6 +3,8 @@ package aut.izanamineko.lobbysystem2021.TabScore;
 import aut.izanamineko.lobbysystem2021.Utils.ScoreboardManager;
 import aut.izanamineko.lobbysystem2021.main;
 import net.luckperms.api.LuckPerms;
+import net.luckperms.api.LuckPermsProvider;
+import net.luckperms.api.model.user.User;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -44,6 +46,8 @@ public class bScoreboard implements Listener {
         Objective objekt = board.registerNewObjective("bla", "blub");
         int online = Bukkit.getOnlinePlayers().size();
         int maxplayer = Bukkit.getMaxPlayers();
+
+
 
         String title = this.sb.getConfig().getString("Scoreboard.Title").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
         String dreizehn = this.sb.getConfig().getString("Scoreboard.13").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));

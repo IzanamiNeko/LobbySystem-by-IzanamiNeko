@@ -32,7 +32,7 @@ public class Spawn implements CommandExecutor {
             return true;
         }
         Player p = (Player) sender;
-        if (!p.hasPermission("LobbySystem.Lobby")) {
+        if (!p.hasPermission("LobbySystem.Spawn")) {
             String msg = this.mm.getConfig().getString("Messages.General.NoPermissions").replace("&", "§").replaceAll("%player%", p.getName());
             p.sendMessage(msg);
             return true;

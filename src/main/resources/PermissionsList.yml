@@ -1,8 +1,8 @@
 #PermissionsList.yml by IzanamiNeko
 Permissions:
   - LobbySystem.CommandProtection
-  - LobbySystem.Lobby
-  - LobbySystem.SetLobby
+  - LobbySystem.Spawn
+  - LobbySystem.SetSpawn
   - LobbySystem.PlayerLimit.Bypass
   - LobbySystem.ChatClear
   - LobbySystem.SetWarp

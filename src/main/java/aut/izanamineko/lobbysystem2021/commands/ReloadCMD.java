@@ -42,7 +42,7 @@ public class ReloadCMD implements CommandExecutor {
                 this.plugin.reloadConfig();
                 this.mm.load();
                 this.sb.load();
-                String msg = this.plugin.getConfig().getString("ReloadCMD.Message").replace("&", "§");
+                String msg = this.mm.getConfig().getString("Messages.General.Reload").replace("&", "§");
                 p.sendMessage(msg);
                 return true;
             }
