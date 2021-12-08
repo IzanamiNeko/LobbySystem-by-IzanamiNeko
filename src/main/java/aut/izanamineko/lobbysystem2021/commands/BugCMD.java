@@ -55,7 +55,7 @@ public class BugCMD implements CommandExecutor {
                     //String msg2 = this.plugin.getConfig().getString("BugCMD.BugReport").replace("&", "§").replaceAll("%bug%", bug);
                     //players.sendMessage(msg2);
                     players.playSound(players.getLocation(), Sound.BLOCK_ANVIL_USE, 10.0F, 10.0F);
-                    File file = new File("plugins/LobbySystem2021/Bugs/ID" + int_random + ".yml");
+                    File file = new File("plugins/LobbySystem/Bugs/ID" + int_random + ".yml");
                     if (!file.exists()) {
                         try {
                             file.createNewFile();

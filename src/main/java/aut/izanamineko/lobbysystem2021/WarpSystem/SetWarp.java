@@ -37,7 +37,7 @@ public class SetWarp implements CommandExecutor {
                     return true;
                 }
                 if (args.length > 0) {
-                    File file = new File("plugins/LobbySystem2021/Warps/" + args[0] + ".yml");
+                    File file = new File("plugins/LobbySystem/Warps/" + args[0] + ".yml");
                     if (!file.exists()) {
                         try {
                             file.createNewFile();

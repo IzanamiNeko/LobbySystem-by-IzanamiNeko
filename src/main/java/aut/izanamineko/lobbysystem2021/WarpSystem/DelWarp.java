@@ -27,7 +27,7 @@ public class DelWarp implements CommandExecutor {
         Player p = (Player) sender;
         if (p.hasPermission("LobbySystem.DelWarp")) {
             if (args.length > 0) {
-                File file = new File("plugins/LobbySystem2021/Warps/", args[0] + ".yml");
+                File file = new File("plugins/LobbySystem/Warps/", args[0] + ".yml");
                 if (file.exists()) {
                     String msg = this.mm.getConfig().getString("Messages.WarpSystem.DelWarp").replace("&", "§").replaceAll("%warpname%", args[0]);
                     p.sendMessage(msg);

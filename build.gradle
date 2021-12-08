@@ -3,13 +3,14 @@ plugins {
 }
 
 group 'aut.izanamineko.lobbysystem2021'
-version 'V3.2'
+version 'V4.0-MC1.18'
 
 repositories {
         mavenCentral()
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
         maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
         maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'}
+        maven { url = 'https://oss.sonatype.org/content/repositories/snapshots/'}
 
     }
 
@@ -17,10 +18,19 @@ dependencies {
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
         compileOnly 'org.spigotmc:spigot-api:1.12-R0.1-SNAPSHOT'
+        compileOnly 'org.spigotmc:spigot-api:1.13-R0.1-SNAPSHOT'
+        compileOnly 'org.spigotmc:spigot-api:1.14-R0.1-SNAPSHOT'
+        compileOnly 'org.spigotmc:spigot-api:1.15-R0.1-SNAPSHOT'
         compileOnly 'org.spigotmc:spigot-api:1.16-R0.1-SNAPSHOT'
         compileOnly 'org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT'
+        compileOnly 'org.spigotmc:spigot-api:1.18-R0.1-SNAPSHOT'
+        compileOnly 'net.md-5:bungeecord-api:1.16-R0.4'
         compileOnly 'me.clip:placeholderapi:2.10.10'
         compileOnly 'net.luckperms:api:5.3'
+}
+
+processResources {
+    expand project.properties
 }
 
 test {

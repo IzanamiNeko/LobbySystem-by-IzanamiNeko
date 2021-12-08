@@ -33,7 +33,7 @@ public class ReloadCMD implements CommandExecutor {
             return true;
         }
         if(cmd.getName().equalsIgnoreCase("lobbysystem")){
-            if(!p.hasPermission("LobbySystem.Reload") || !p.isOp()) {
+            if(!p.hasPermission("LobbySystem.MainCommand") || !p.isOp()) {
                 String msg = this.mm.getConfig().getString("Messages.General.NoPermissions").replace("&", "§");
                 p.sendMessage(msg);
                 return true;

@@ -31,7 +31,7 @@ public class SetSpawn implements CommandExecutor {
             p.sendMessage(msg);
             return true;
         }
-        File file = new File("plugins/LobbySystem2021/spawnloc.yml");
+        File file = new File("plugins/LobbySystem/spawnloc.yml");
         //File file = new File(this.plugin.getConfig().getString("Spawn.Path"));
         if (!file.exists())
             try {

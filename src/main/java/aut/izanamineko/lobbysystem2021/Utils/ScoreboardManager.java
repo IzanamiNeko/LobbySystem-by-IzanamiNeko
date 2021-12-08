@@ -14,7 +14,7 @@ public class ScoreboardManager {
     public final FileConfiguration sbconfig;
 
     public ScoreboardManager(){
-        this.sbfile = new File("plugins/LobbySystem2021/scoreboard.yml");
+        this.sbfile = new File("plugins/LobbySystem/scoreboard.yml");
         this.sbconfig = (FileConfiguration) YamlConfiguration.loadConfiguration(this.sbfile);
         addDefaultStrings();
         checkIfExists();
@@ -35,23 +35,23 @@ public class ScoreboardManager {
     private void addDefaultStrings(){
 
         this.sbconfig.addDefault("Scoreboard.Title", "&8[&3LobbySystem&8]");
-        this.sbconfig.addDefault("Scoreboard.13", "&8Server/Hub:");
-        this.sbconfig.addDefault("Scoreboard.12", "&4Your Server/Hub Name");
-        this.sbconfig.addDefault("Scoreboard.11", "&6");
-        this.sbconfig.addDefault("Scoreboard.10", "Test");
-        this.sbconfig.addDefault("Scoreboard.9", "Test");
-        this.sbconfig.addDefault("Scoreboard.8", "Test");
+        this.sbconfig.addDefault("Scoreboard.13",  "&8Server/Hub:");
+        this.sbconfig.addDefault("Scoreboard.12",  "&4%server_name%");
+        this.sbconfig.addDefault("Scoreboard.11",  "&6");
+        this.sbconfig.addDefault("Scoreboard.10",  "&6Your Rank:");
+        this.sbconfig.addDefault("Scoreboard.9", "%luckperms_primary_group_name%");
+        this.sbconfig.addDefault("Scoreboard.8", "&7");
         this.sbconfig.addDefault("Scoreboard.7", "&6Online:");
         this.sbconfig.addDefault("Scoreboard.6", "%online% / %maxplayer%");
-        this.sbconfig.addDefault("Scoreboard.5", "Test");
-        this.sbconfig.addDefault("Scoreboard.4", "Test");
-        this.sbconfig.addDefault("Scoreboard.3", "Test");
-        this.sbconfig.addDefault("Scoreboard.2", "Test");
-        this.sbconfig.addDefault("Scoreboard.1", "Test");
-        this.sbconfig.addDefault("Scoreboard.0", "Test");
-        List<String> Strings = Arrays.asList("Here are some Strings to use for the Scoreboard", "%maxplayer%", "%online%");
+        this.sbconfig.addDefault("Scoreboard.5", "&1");
+        this.sbconfig.addDefault("Scoreboard.4", "&2Money:");
+        this.sbconfig.addDefault("Scoreboard.3", "&3%vault_eco_balance%");
+        this.sbconfig.addDefault("Scoreboard.2", "&4");
+        this.sbconfig.addDefault("Scoreboard.1", "&5Test");
+        this.sbconfig.addDefault("Scoreboard.0", "&8%vault_rank%");
+        List<String> Strings = Arrays.asList("Here are some Strings to use for the Scoreboard", "%maxplayer%", "%online%", "%bungee_<servername>%", "https://luckperms.net/wiki/Placeholders");
         this.sbconfig.set("Scoreboard.Information", Strings);
-        this.sbconfig.options().header("LobbySystem2021 Scoreboard CONFIG by IzanamiNeko");
+        this.sbconfig.options().header("LobbySystem Scoreboard CONFIG by IzanamiNeko");
         this.sbconfig.options().copyDefaults(true);
         save();
     }

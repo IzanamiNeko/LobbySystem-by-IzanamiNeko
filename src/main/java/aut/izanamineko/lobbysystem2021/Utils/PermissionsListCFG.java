@@ -1,11 +1,8 @@
 package aut.izanamineko.lobbysystem2021.Utils;
 
-import aut.izanamineko.lobbysystem2021.main;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +16,7 @@ public class PermissionsListCFG {
     public final FileConfiguration plcfg;
 
     public PermissionsListCFG(){
-        this.permissionslist = new File("plugins/LobbySystem2021/permissionslist.yml");
+        this.permissionslist = new File("plugins/LobbySystem/permissionslist.yml");
         this.plcfg = (FileConfiguration) YamlConfiguration.loadConfiguration(this.permissionslist);
         addDefaultStrings();
         checkIfExists();

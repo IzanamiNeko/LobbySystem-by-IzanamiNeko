@@ -1,7 +1,7 @@
 main: aut.izanamineko.lobbysystem2021.main
 name: LobbySystem
-version: 2021.3.0-BETA
-api-version: 1.17
+version: V4.0-MC.18
+api-version: 1.18
 softdepend:
   - PlaceholderAPI
 commands:
@@ -22,6 +22,8 @@ commands:
   warplist:
     description: Use /warplist to get every Warppoint set right now!
   lobbysystem:
+    aliases:
+      - ls
     description: Use /lobbysystem for Informations
   ping:
     description: Use /ping to see your Latency

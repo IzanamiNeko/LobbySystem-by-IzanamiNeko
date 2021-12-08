@@ -1,4 +1,4 @@
-package aut.izanamineko.lobbysystem2021.events;
+package aut.izanamineko.lobbysystem2021.SpawnSystem;
 
 import aut.izanamineko.lobbysystem2021.main;
 import org.bukkit.Bukkit;
@@ -23,7 +23,7 @@ public class Respawn implements Listener {
     @EventHandler
         public void onRespawn(PlayerRespawnEvent e) {
         Player p = e.getPlayer();
-        File file = new File("plugins/LobbySystem2021/spawnloc.yml");
+        File file = new File("plugins/LobbySystem/spawnloc.yml");
         if (!file.exists())
             return;
         YamlConfiguration cfg = YamlConfiguration.loadConfiguration(file);

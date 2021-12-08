@@ -32,8 +32,6 @@ public class WarpList implements CommandExecutor {
             p.sendMessage("----- Warplist -----");
             p.sendMessage("");
 
-        } else {
-            p.sendMessage("Didnt work out yet");
         }
 
         return true;

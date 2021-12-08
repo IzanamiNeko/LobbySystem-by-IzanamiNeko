@@ -38,7 +38,7 @@ public class Spawn implements CommandExecutor {
             return true;
         }
 
-        File file = new File("plugins/LobbySystem2021/spawnloc.yml");
+        File file = new File("plugins/LobbySystem/spawnloc.yml");
         if (!file.exists()) {
             String msg = this.mm.getConfig().getString("Messages.Spawn.DoesntExist").replace("&", "§");
             p.sendMessage(msg);

@@ -32,7 +32,7 @@ public class Warp implements CommandExecutor {
 
 
                 if (args.length > 0) {
-                    File file = new File("plugins/LobbySystem2021/Warps/" + args[0] + ".yml");
+                    File file = new File("plugins/LobbySystem/Warps/" + args[0] + ".yml");
 
                     if (!file.exists()) {
                         String msg = this.mm.getConfig().getString("Messages.WarpSystem.NoWarp").replace("&", "§").replaceAll("%warpname%", args[0]);

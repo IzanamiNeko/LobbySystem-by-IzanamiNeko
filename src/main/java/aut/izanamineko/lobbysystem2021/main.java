@@ -1,9 +1,12 @@
 package aut.izanamineko.lobbysystem2021;
 
 
+import aut.izanamineko.lobbysystem2021.SpawnSystem.Respawn;
 import aut.izanamineko.lobbysystem2021.SpawnSystem.SetSpawn;
 import aut.izanamineko.lobbysystem2021.SpawnSystem.Spawn;
+import aut.izanamineko.lobbysystem2021.TabScore.TabBar;
 import aut.izanamineko.lobbysystem2021.TabScore.bScoreboard;
+import aut.izanamineko.lobbysystem2021.TabScore.updateTablist;
 import aut.izanamineko.lobbysystem2021.Utils.PermissionsListCFG;
 import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
 import aut.izanamineko.lobbysystem2021.WarpSystem.DelWarp;
@@ -12,6 +15,8 @@ import aut.izanamineko.lobbysystem2021.WarpSystem.Warp;
 import aut.izanamineko.lobbysystem2021.WarpSystem.WarpList;
 import aut.izanamineko.lobbysystem2021.commands.*;
 import aut.izanamineko.lobbysystem2021.events.*;
+import me.clip.placeholderapi.PlaceholderAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -33,7 +38,8 @@ public class main extends JavaPlugin {
 
     @Override
     public void onEnable() {        //Beim Start wird alles was in onEnable steht ausgeführt
-        System.out.println(ChatColor.GREEN + "LobbySystem V2021 is starting....");
+        Bukkit.getLogger().info(ChatColor.GREEN + "LobbySystem V2021 is starting....");
+        Bukkit.getLogger().info(ChatColor.RED +  "For a full placeholder support, use PlaceholderAPI and the PlaceholderExpansion");
 
         createWarpsDirectory();
         createBugDirectory();
@@ -45,7 +51,8 @@ public class main extends JavaPlugin {
 
     @Override
     public void onDisable() {       //Beim Stoppen wird alles was in onDisable steht ausgeführt
-        System.out.println(ChatColor.RED + "LobbySystem V2021 is stopping....");
+        Bukkit.getLogger().info(ChatColor.RED + "LobbySystem V2021 is stopping....");
+
 
     }
 
@@ -59,6 +66,8 @@ public class main extends JavaPlugin {
         pm.registerEvents(new AntiPlugin(this), this);
         pm.registerEvents(new TeamChat(this), this);
         pm.registerEvents(new bScoreboard(this), this);
+        pm.registerEvents(new updateTablist(this), this);
+        pm.registerEvents(new TabBar(), this);
         //pm.registerEvents(new DoubleJump(this), this);
         //pm.registerEvents(new InvOnJoin(this), this);
         //pm.registerEvents(new InvOnJoin(this), this);

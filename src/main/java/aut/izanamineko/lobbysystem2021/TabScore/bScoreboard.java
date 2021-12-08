@@ -2,19 +2,18 @@ package aut.izanamineko.lobbysystem2021.TabScore;
 
 import aut.izanamineko.lobbysystem2021.Utils.ScoreboardManager;
 import aut.izanamineko.lobbysystem2021.main;
-import net.luckperms.api.LuckPerms;
-import net.luckperms.api.LuckPermsProvider;
-import net.luckperms.api.model.user.User;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
+
 
 public class bScoreboard implements Listener {
 
@@ -41,29 +40,26 @@ public class bScoreboard implements Listener {
 
     public void updateScoreBoard(Player e) {
         Player p = e.getPlayer();
-        int stunden = this.plugin.getConfig().getInt(e.getPlayer().getName() + ".Stunden");
         Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
         Objective objekt = board.registerNewObjective("bla", "blub");
         int online = Bukkit.getOnlinePlayers().size();
         int maxplayer = Bukkit.getMaxPlayers();
 
-
-
-        String title = this.sb.getConfig().getString("Scoreboard.Title").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
-        String dreizehn = this.sb.getConfig().getString("Scoreboard.13").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
-        String zwoelf = this.sb.getConfig().getString("Scoreboard.12").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
-        String elf = this.sb.getConfig().getString("Scoreboard.11").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
-        String zehn = this.sb.getConfig().getString("Scoreboard.10").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
-        String neun = this.sb.getConfig().getString("Scoreboard.9").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
-        String acht = this.sb.getConfig().getString("Scoreboard.8").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
-        String sieben = this.sb.getConfig().getString("Scoreboard.7").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
-        String sechs = this.sb.getConfig().getString("Scoreboard.6").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
-        String fuenf = this.sb.getConfig().getString("Scoreboard.5").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
-        String vier = this.sb.getConfig().getString("Scoreboard.4").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
-        String drei = this.sb.getConfig().getString("Scoreboard.3").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
-        String zwei = this.sb.getConfig().getString("Scoreboard.2").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
-        String eins = this.sb.getConfig().getString("Scoreboard.1").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
-        String zero = this.sb.getConfig().getString("Scoreboard.0").replace("&", "§").replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
+        String title = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, this.sb.getConfig().getString("Scoreboard.Title"))).replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
+        String dreizehn = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, this.sb.getConfig().getString("Scoreboard.13"))).replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
+        String zwoelf = ChatColor.translateAlternateColorCodes('&',PlaceholderAPI.setPlaceholders(p, this.sb.getConfig().getString("Scoreboard.12"))).replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
+        String elf = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, this.sb.getConfig().getString("Scoreboard.11"))).replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
+        String zehn = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, this.sb.getConfig().getString("Scoreboard.10"))).replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
+        String neun = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, this.sb.getConfig().getString("Scoreboard.9"))).replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
+        String acht = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, this.sb.getConfig().getString("Scoreboard.8"))).replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
+        String sieben = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, this.sb.getConfig().getString("Scoreboard.7"))).replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
+        String sechs = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, this.sb.getConfig().getString("Scoreboard.6"))).replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
+        String fuenf = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, this.sb.getConfig().getString("Scoreboard.5"))).replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
+        String vier = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, this.sb.getConfig().getString("Scoreboard.4"))).replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
+        String drei = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, this.sb.getConfig().getString("Scoreboard.3"))).replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
+        String zwei = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, this.sb.getConfig().getString("Scoreboard.2"))).replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
+        String eins = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, this.sb.getConfig().getString("Scoreboard.1"))).replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
+        String zero = ChatColor.translateAlternateColorCodes('&', PlaceholderAPI.setPlaceholders(p, this.sb.getConfig().getString("Scoreboard.0"))).replaceAll("%online%", String.valueOf(online)).replaceAll("%maxplayer%", String.valueOf(maxplayer));
         objekt.getScore(dreizehn).setScore(13);
         objekt.getScore(zwoelf).setScore(12);
         objekt.getScore(elf).setScore(11);
