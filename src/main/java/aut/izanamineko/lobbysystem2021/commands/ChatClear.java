@@ -1,5 +1,6 @@
 package aut.izanamineko.lobbysystem2021.commands;
 
+import aut.izanamineko.lobbysystem2021.Utils.ConfigManager;
 import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
 import aut.izanamineko.lobbysystem2021.main;
 import org.bukkit.Bukkit;
@@ -10,19 +11,15 @@ import org.bukkit.entity.Player;
 
 public class ChatClear implements CommandExecutor {
 
-    main plugin;
-
     MessagesManager mm = new MessagesManager();
+    ConfigManager cm = new ConfigManager();
 
-    public ChatClear(main instance) {
-        this.plugin = instance;
-    }
     int i = 0;
 
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player)sender;
-        if(this.plugin.getConfig().getString("ChatClear.Enabled").equals("true")) {
+        if(this.cm.getConfig().getString("Config.ChatClear.Enabled").equals("true")) {
             if (p.hasPermission("LobbySystem.ChatClear")) {
                 while (i < 100) {
                     Bukkit.getServer().broadcastMessage(" ");
@@ -30,10 +27,10 @@ public class ChatClear implements CommandExecutor {
                 }
                 String msg = this.mm.getConfig().getString("Messages.ChatClear.Message").replace("&", "§");
 
-                if(this.plugin.getConfig().getBoolean("ChatClear.AllChat", true)){
+                if(this.cm.getConfig().getBoolean("Config.ChatClear.AllChat", true)){
                     Bukkit.getServer().broadcastMessage(msg);
                 }
-                if(this.plugin.getConfig().getBoolean("ChatClear.PlayerChat", true)){
+                if(this.cm.getConfig().getBoolean("Config.ChatClear.PlayerChat", true)){
                     p.sendMessage(msg);
                 }
 

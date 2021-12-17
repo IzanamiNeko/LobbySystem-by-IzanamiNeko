@@ -11,15 +11,12 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 public class ChatFormatter implements Listener {
 
     MessagesManager mm = new MessagesManager();
-
-
-
-
+    ConfigManager cm = new ConfigManager();
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerChat(AsyncPlayerChatEvent e) {
         Player p = e.getPlayer();
-        if (this.mm.getConfig().getString("Chat-Format.Enabled").equals("true")) {
+        if (this.cm.getConfig().getString("Config.Chat-Format.Enabled").equals("true")) {
             String config = PlaceholderAPI.setPlaceholders(p, this.mm.getConfig().getString("Messages.Chat-Format.Format"));
             String altColor = ChatColor.translateAlternateColorCodes('&', config);
             String msg = altColor;

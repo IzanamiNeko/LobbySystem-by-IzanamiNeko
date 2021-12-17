@@ -1,5 +1,6 @@
 package aut.izanamineko.lobbysystem2021.commands;
 
+import aut.izanamineko.lobbysystem2021.Utils.ConfigManager;
 import aut.izanamineko.lobbysystem2021.Utils.PermissionsListCFG;
 import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
 import aut.izanamineko.lobbysystem2021.Utils.ScoreboardManager;
@@ -11,19 +12,10 @@ import org.bukkit.entity.Player;
 
 public class ReloadCMD implements CommandExecutor {
 
-    main plugin;
-
     MessagesManager mm = new MessagesManager();
     PermissionsListCFG cfgm = new PermissionsListCFG();
     ScoreboardManager sb = new ScoreboardManager();
-
-    public ReloadCMD(main instance) {
-        this.plugin = instance;
-    }
-
-    public ReloadCMD(PermissionsListCFG instance){
-        cfgm = instance;
-    }
+    ConfigManager cm = new ConfigManager();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
@@ -39,7 +31,7 @@ public class ReloadCMD implements CommandExecutor {
                 return true;
             }
             if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-                this.plugin.reloadConfig();
+                this.cm.load();
                 this.mm.load();
                 this.sb.load();
                 String msg = this.mm.getConfig().getString("Messages.General.Reload").replace("&", "§");

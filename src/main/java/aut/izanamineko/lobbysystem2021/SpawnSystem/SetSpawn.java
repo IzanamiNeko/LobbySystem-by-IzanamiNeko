@@ -1,5 +1,6 @@
 package aut.izanamineko.lobbysystem2021.SpawnSystem;
 
+import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
 import aut.izanamineko.lobbysystem2021.main;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -14,25 +15,20 @@ import java.io.IOException;
 
 public class SetSpawn implements CommandExecutor {
 
-    main plugin;
-
-    public SetSpawn(main instance) {
-        this.plugin = instance;
-    }
+    MessagesManager mm = new MessagesManager();
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            System.out.println("You need to be a Player");
+            sender.sendMessage(ChatColor.RED + "[LobbySystem] You can use this Command only as a Player");
             return true;
         }
         Player p = (Player)sender;
         if (!p.hasPermission("LobbySystem.SetSpawn")) {
-            String msg = this.plugin.getConfig().getString("Spawn.Permissions").replace("&", "§");
-            p.sendMessage(msg);
+            String noperm = ChatColor.translateAlternateColorCodes('&', this.mm.getConfig().getString("Messages.General.NoPermissions"));
+            p.sendMessage(noperm);
             return true;
         }
         File file = new File("plugins/LobbySystem/spawnloc.yml");
-        //File file = new File(this.plugin.getConfig().getString("Spawn.Path"));
         if (!file.exists())
             try {
                 file.createNewFile();
@@ -58,7 +54,7 @@ public class SetSpawn implements CommandExecutor {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String msg = this.plugin.getConfig().getString("Spawn.Set").replace("&", "§");
+        String msg = ChatColor.translateAlternateColorCodes('&',this.mm.getConfig().getString("Messages.Spawn.Set"));
         p.sendMessage(msg);
         return true;
     }

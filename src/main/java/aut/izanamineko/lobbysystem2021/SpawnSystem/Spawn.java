@@ -28,13 +28,13 @@ public class Spawn implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            System.out.println("You need to be a Player");
+            sender.sendMessage(ChatColor.RED + "[LobbySystem] You can use this Command only as a Player");
             return true;
         }
         Player p = (Player) sender;
         if (!p.hasPermission("LobbySystem.Spawn")) {
-            String msg = this.mm.getConfig().getString("Messages.General.NoPermissions").replace("&", "§").replaceAll("%player%", p.getName());
-            p.sendMessage(msg);
+            String noperm = ChatColor.translateAlternateColorCodes('&', this.mm.getConfig().getString("Messages.General.NoPermissions"));
+            p.sendMessage(noperm);
             return true;
         }
 

@@ -1,5 +1,6 @@
 package aut.izanamineko.lobbysystem2021.events;
 
+import aut.izanamineko.lobbysystem2021.Utils.ConfigManager;
 import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
 import aut.izanamineko.lobbysystem2021.main;
 import org.bukkit.entity.Player;
@@ -10,19 +11,13 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 public class AntiPlugin implements Listener {
 
-    static main plugin;
-
     MessagesManager mm = new MessagesManager();
-
-    public AntiPlugin(main instance) {
-        plugin = instance;
-    }
-
+    ConfigManager cm = new ConfigManager();
 
     @EventHandler
     public void onCMD2(PlayerCommandPreprocessEvent onCMD) {
         Player p = onCMD.getPlayer();
-        if (this.plugin.getConfig().getString("AntiPlugin.Enabled").equals("true"))
+        if (this.cm.getConfig().getString("AntiPlugin.Enabled").equals("true"))
             if (onCMD.getMessage().equals("/plugins") && !onCMD.getPlayer().isOp() || !p.hasPermission("LobbySystem.CommandProtection")){
                 String msg2 = this.mm.getConfig().getString("Messages.AntiPlugin.Message").replace("&", "§").replaceAll("%player%", onCMD.getPlayer().getPlayerListName());
                         p.sendMessage(msg2);
@@ -35,7 +30,7 @@ public class AntiPlugin implements Listener {
     @EventHandler
     public void onCMD3(PlayerCommandPreprocessEvent onCMD) {
         Player p = onCMD.getPlayer();
-        if (this.plugin.getConfig().getString("AntiPlugin.Enabled").equals("true"))
+        if (this.cm.getConfig().getString("AntiPlugin.Enabled").equals("true"))
             if (onCMD.getMessage().equals("/pl") && !onCMD.getPlayer().isOp()) {
                 p.hasPermission("LobbySystem.CommandProtection");
                 String msg3 = this.mm.getConfig().getString("Messages.AntiPlugin.Message").replace("&", "§").replaceAll("%player%", onCMD.getPlayer().getPlayerListName());
@@ -47,7 +42,7 @@ public class AntiPlugin implements Listener {
     @EventHandler
     public void onCMD5(PlayerCommandPreprocessEvent onCMD) {
         Player p = onCMD.getPlayer();
-        if (this.plugin.getConfig().getString("AntiPlugin.Enabled").equals("true"))
+        if (this.cm.getConfig().getString("AntiPlugin.Enabled").equals("true"))
             if (onCMD.getMessage().equals("/ver") && !onCMD.getPlayer().isOp()) {
                 p.hasPermission("LobbySystem.CommandProtection");
                 String msg4 = this.mm.getConfig().getString("Messages.AntiPlugin.Message").replace("&", "§").replaceAll("%player%", onCMD.getPlayer().getPlayerListName());
@@ -59,7 +54,7 @@ public class AntiPlugin implements Listener {
     @EventHandler
     public void onCMD6(PlayerCommandPreprocessEvent onCMD) {
         Player p = onCMD.getPlayer();
-        if (this.plugin.getConfig().getString("AntiPlugin.Enabled").equals("true"))
+        if (this.cm.getConfig().getString("AntiPlugin.Enabled").equals("true"))
             if (onCMD.getMessage().equals("/version") && !onCMD.getPlayer().isOp()) {
                 p.hasPermission("LobbySystem.CommandProtection");
                 String msg5 = this.mm.getConfig().getString("Messages.AntiPlugin.Message").replace("&", "§").replaceAll("%player%", onCMD.getPlayer().getPlayerListName());
@@ -71,7 +66,7 @@ public class AntiPlugin implements Listener {
     @EventHandler
     public void onCMD7(PlayerCommandPreprocessEvent onCMD) {
         Player p = onCMD.getPlayer();
-        if (this.plugin.getConfig().getString("AntiPlugin.Enabled").equals("true"))
+        if (this.cm.getConfig().getString("AntiPlugin.Enabled").equals("true"))
             if (onCMD.getMessage().equals("/bukkit:plugins") && !onCMD.getPlayer().isOp()) {
                 p.hasPermission("LobbySystem.CommandProtection");
                 String msg6 = this.mm.getConfig().getString("Messages.AntiPlugin.Message").replace("&", "§").replaceAll("%player%", onCMD.getPlayer().getPlayerListName());
@@ -83,7 +78,7 @@ public class AntiPlugin implements Listener {
     @EventHandler
     public void onCMD8(PlayerCommandPreprocessEvent onCMD) {
         Player p = onCMD.getPlayer();
-        if (this.plugin.getConfig().getString("AntiPlugin.Enabled").equals("true"))
+        if (this.cm.getConfig().getString("AntiPlugin.Enabled").equals("true"))
             if (onCMD.getMessage().equals("/bukkit:pl") && !onCMD.getPlayer().isOp()) {
                 p.hasPermission("LobbySystem.CommandProtection");
                 String msg7 = this.mm.getConfig().getString("Messages.AntiPlugin.Message").replace("&", "§").replaceAll("%player%", onCMD.getPlayer().getPlayerListName());
@@ -95,7 +90,7 @@ public class AntiPlugin implements Listener {
     @EventHandler
     public void onCMD11(PlayerCommandPreprocessEvent onCMD) {
         Player p = onCMD.getPlayer();
-        if (this.plugin.getConfig().getString("AntiPlugin.Enabled").equals("true"))
+        if (this.cm.getConfig().getString("AntiPlugin.Enabled").equals("true"))
             if (onCMD.getMessage().equals("/bukkit:ver") && !onCMD.getPlayer().isOp()) {
                 p.hasPermission("LobbySystem.CommandProtection");
                 String msg9 = this.mm.getConfig().getString("Messages.AntiPlugin.Message").replace("&", "§").replaceAll("%player%", onCMD.getPlayer().getPlayerListName());
@@ -107,7 +102,7 @@ public class AntiPlugin implements Listener {
     @EventHandler
     public void onCMD12(PlayerCommandPreprocessEvent onCMD) {
         Player p = onCMD.getPlayer();
-        if (this.plugin.getConfig().getString("AntiPlugin.Enabled").equals("true"))
+        if (this.cm.getConfig().getString("AntiPlugin.Enabled").equals("true"))
             if (onCMD.getMessage().equals("/bukkit:version") && !onCMD.getPlayer().isOp()) {
                 p.hasPermission("LobbySystem.CommandProtection");
                 String msg10 = this.mm.getConfig().getString("Messages.AntiPlugin.Message").replace("&", "§").replaceAll("%player%", onCMD.getPlayer().getPlayerListName());
@@ -119,7 +114,7 @@ public class AntiPlugin implements Listener {
     @EventHandler
     public void onCMD15(PlayerCommandPreprocessEvent onCMD) {
         Player p = onCMD.getPlayer();
-        if(this.plugin.getConfig().getString("HelpList.Enabled").equals("true")){
+        if(this.cm.getConfig().getString("HelpList.Enabled").equals("true")){
             if(!onCMD.getPlayer().hasPermission("LobbySystem.HelpCMD") && onCMD.getMessage().equals("/help") || onCMD.getMessage().equals("/?") || onCMD.getMessage().equals("/bukkit:help") || onCMD.getMessage().equals("/bukkit:?")){
 
                 String msg1 = this.mm.getConfig().getString("Messages.HelpList.Line1").replace("&", "§");

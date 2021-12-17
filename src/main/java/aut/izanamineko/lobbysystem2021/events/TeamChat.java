@@ -1,5 +1,7 @@
 package aut.izanamineko.lobbysystem2021.events;
 
+import aut.izanamineko.lobbysystem2021.Utils.ConfigManager;
+import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
 import aut.izanamineko.lobbysystem2021.main;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -9,18 +11,15 @@ import org.bukkit.event.player.PlayerChatEvent;
 
 public class TeamChat implements Listener {
 
-    private main plugin;
-
-    public TeamChat(main plugin) {
-        this.plugin = plugin;
-    }
+    ConfigManager cm = new ConfigManager();
+    MessagesManager mm = new MessagesManager();
 
     @EventHandler
     public boolean onTC(PlayerChatEvent e) {
         Player p = e.getPlayer();
-        String tc = this.plugin.getConfig().getString("TeamChat.Prefix").replace("&", "§").replaceAll("%player%", p.getName());
+        String tc = this.mm.getConfig().getString("Messages.TeamChat.Prefix").replace("&", "§").replaceAll("%player%", p.getName());
 
-        if (this.plugin.getConfig().getString("TeamChat.Enabled").equals("true")){
+        if (this.cm.getConfig().getString("Config.TeamChat.Enabled").equals("true")){
             if (e.getMessage().startsWith("!")) {
                 if (p.hasPermission("LobbySystem.TeamChat") || p.isOp()) {
                     e.setCancelled(true);

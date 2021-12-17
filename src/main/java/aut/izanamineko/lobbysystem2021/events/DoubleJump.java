@@ -1,5 +1,7 @@
 package aut.izanamineko.lobbysystem2021.events;
 
+import aut.izanamineko.lobbysystem2021.Utils.ConfigManager;
+import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
 import aut.izanamineko.lobbysystem2021.main;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -12,11 +14,8 @@ import org.bukkit.event.player.PlayerToggleFlightEvent;
 public class DoubleJump implements Listener {
 
 
-    main plugin;
-
-    public DoubleJump(main instance) {
-        this.plugin = instance;
-    }
+    ConfigManager cm = new ConfigManager();
+    MessagesManager mm = new MessagesManager();
 
     @EventHandler
     public void onPlayerToggleFlight(PlayerToggleFlightEvent event) {
@@ -24,7 +23,7 @@ public class DoubleJump implements Listener {
         if (player.getGameMode() == GameMode.CREATIVE)
             return;
         event.setCancelled(true);
-        if (this.plugin.getConfig().getString("DoubleJump.Enabled").equals("true")) {
+        if (this.cm.getConfig().getString("Config.DoubleJump.Enabled").equals("true")) {
             if (player.hasPermission("LobbySystem.DoubleJump")) {
                 player.setAllowFlight(false);
                 player.setFlying(false);
@@ -36,7 +35,7 @@ public class DoubleJump implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        if (this.plugin.getConfig().getString("DoubleJump.Enabled").equals("true")) {
+        if (this.cm.getConfig().getString("Config.DoubleJump.Enabled").equals("true")) {
             if (player.hasPermission("LobbySystem.DoubleJump")) {
                 if (player.getGameMode() != GameMode.CREATIVE && player
                         .getLocation().subtract(0.0D, 1.0D, 0.0D).getBlock().getType() != Material.AIR &&

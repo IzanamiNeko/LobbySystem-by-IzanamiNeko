@@ -7,6 +7,7 @@ import aut.izanamineko.lobbysystem2021.SpawnSystem.Spawn;
 import aut.izanamineko.lobbysystem2021.TabScore.TabBar;
 import aut.izanamineko.lobbysystem2021.TabScore.bScoreboard;
 import aut.izanamineko.lobbysystem2021.TabScore.updateTablist;
+import aut.izanamineko.lobbysystem2021.Utils.ConfigManager;
 import aut.izanamineko.lobbysystem2021.Utils.PermissionsListCFG;
 import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
 import aut.izanamineko.lobbysystem2021.WarpSystem.DelWarp;
@@ -15,7 +16,6 @@ import aut.izanamineko.lobbysystem2021.WarpSystem.Warp;
 import aut.izanamineko.lobbysystem2021.WarpSystem.WarpList;
 import aut.izanamineko.lobbysystem2021.commands.*;
 import aut.izanamineko.lobbysystem2021.events.*;
-import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
@@ -29,6 +29,7 @@ public class main extends JavaPlugin {
 
     private MessagesManager mm = new MessagesManager();
     private PermissionsListCFG plcfg = new PermissionsListCFG();
+    private ConfigManager cm = new ConfigManager();
 
 
 
@@ -41,11 +42,10 @@ public class main extends JavaPlugin {
         Bukkit.getLogger().info(ChatColor.GREEN + "LobbySystem V2021 is starting....");
         Bukkit.getLogger().info(ChatColor.RED +  "For a full placeholder support, use PlaceholderAPI and the PlaceholderExpansion");
 
-        createWarpsDirectory();
         createBugDirectory();
         loadCommands();
         loadListener();
-        loadConfig();
+        //loadConfig();
     }
 
 
@@ -60,11 +60,11 @@ public class main extends JavaPlugin {
 
     private void loadListener() {
         PluginManager pm = getServer().getPluginManager();
-        pm.registerEvents(new JQEvent(this), this);
+        pm.registerEvents(new JQEvent(), this);
         pm.registerEvents(new Respawn(this), this);
         pm.registerEvents(new BypassLimit(), this);
-        pm.registerEvents(new AntiPlugin(this), this);
-        pm.registerEvents(new TeamChat(this), this);
+        pm.registerEvents(new AntiPlugin(), this);
+        pm.registerEvents(new TeamChat(), this);
         pm.registerEvents(new bScoreboard(this), this);
         pm.registerEvents(new updateTablist(this), this);
         pm.registerEvents(new TabBar(), this);
@@ -79,11 +79,12 @@ public class main extends JavaPlugin {
         getCommand("setwarp").setExecutor(new SetWarp(this));
         getCommand("warp").setExecutor(new Warp(this));
         getCommand("delwarp").setExecutor(new DelWarp(this));
-        getCommand("setspawn").setExecutor(new SetSpawn(this));
+        getCommand("setspawn").setExecutor(new SetSpawn());
         getCommand("spawn").setExecutor(new Spawn(this));
-        getCommand("chatclear").setExecutor(new ChatClear(this));
-        getCommand("cc").setExecutor(new ChatClear(this));
-        getCommand("lobbysystem").setExecutor(new ReloadCMD(this));
+        getCommand("chatclear").setExecutor(new ChatClear());
+        getCommand("cc").setExecutor(new ChatClear());
+        getCommand("lobbysystem").setExecutor(new ReloadCMD());
+        getCommand("ls").setExecutor(new ReloadCMD());
         getCommand("ping").setExecutor(new PingCMD( this));
         getCommand("bug").setExecutor(new BugCMD(this));
         getCommand("warplist").setExecutor(new WarpList());
@@ -91,7 +92,7 @@ public class main extends JavaPlugin {
         plugin = this;
     }
 
-    private void loadConfig()
+   /* private void loadConfig()
     {
         getConfig().options().header("LobbySystem2021 by IzanamiNeko");
         getConfig().addDefault("Messages.Join.Show", "false");
@@ -120,19 +121,12 @@ public class main extends JavaPlugin {
         getConfig().options().copyDefaults(true);
         saveConfig();
         reloadConfig();
-    }
+    }*/
 
     public void createBugDirectory() {
         File bug = new File("plugins/LobbySystem2021/Bugs");
         if(!bug.exists()){
             bug.mkdir();
-        }
-    }
-
-    public void createWarpsDirectory() {
-        File warps = new File("plugins/LobbySystem2021/Warps");
-        if (!warps.exists()) {
-            warps.mkdir();
         }
     }
 
