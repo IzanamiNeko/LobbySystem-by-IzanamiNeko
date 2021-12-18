@@ -4,6 +4,7 @@ import aut.izanamineko.lobbysystem2021.Utils.ConfigManager;
 import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
 import aut.izanamineko.lobbysystem2021.main;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -19,27 +20,30 @@ public class ChatClear implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player)sender;
+
+        if (!(sender instanceof Player)) {
+            sender.sendMessage(ChatColor.RED + "[LobbySystem] You can use this Command only as a Player");
+            return true;
+        }
         if(this.cm.getConfig().getString("Config.ChatClear.Enabled").equals("true")) {
-            if (p.hasPermission("LobbySystem.ChatClear")) {
-                while (i < 100) {
-                    Bukkit.getServer().broadcastMessage(" ");
-                    i++;
-                }
-                String msg = this.mm.getConfig().getString("Messages.ChatClear.Message").replace("&", "§");
+            if (!p.hasPermission("LobbySystem.ChatClear") || !p.isOp()) {
+                String noperm = ChatColor.translateAlternateColorCodes('&',
+                        this.mm.getConfig().getString("Messages.General.NoPermissions"));
+                p.sendMessage(noperm);
+                return true;
+            }
+            while (i < 100) {
+                Bukkit.getServer().broadcastMessage(" ");
+                i++;
+            }
+            String msg = ChatColor.translateAlternateColorCodes('&', this.mm.getConfig().getString("Messages.ChatClear.Message"));
 
-                if(this.cm.getConfig().getBoolean("Config.ChatClear.AllChat", true)){
-                    Bukkit.getServer().broadcastMessage(msg);
-                }
-                if(this.cm.getConfig().getBoolean("Config.ChatClear.PlayerChat", true)){
-                    p.sendMessage(msg);
-                }
-
-            } else {
-                String msg1 = this.mm.getConfig().getString("Messages.General.NoPermissions").replace("&", "§").replaceAll("%player%", p.getName());
-                p.sendMessage(msg1);
+            if(this.cm.getConfig().getString("Config.ChatClear.AllChat").equals("true")) {
+                Bukkit.getServer().broadcastMessage(msg);
+                return true;
             }
         }
         i = 0;
-        return false;
+        return true;
     }
 }

@@ -16,15 +16,11 @@ public class ChatFormatter implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerChat(AsyncPlayerChatEvent e) {
         Player p = e.getPlayer();
-        if (this.cm.getConfig().getString("Config.Chat-Format.Enabled").equals("true")) {
-            String config = PlaceholderAPI.setPlaceholders(p, this.mm.getConfig().getString("Messages.Chat-Format.Format"));
-            String altColor = ChatColor.translateAlternateColorCodes('&', config);
-            String msg = altColor;
+        if (this.cm.getConfig().getString("Config.ChatFormat.Enabled").equals("true")) {
+            String config = ChatColor.translateAlternateColorCodes('&',
+                    PlaceholderAPI.setPlaceholders(p, this.mm.getConfig().getString("Messages.ChatFormat.Format")));
 
-            if(p.hasPermission("LobbySystem.ColorChat")) {
-                e.setMessage(ChatColor.translateAlternateColorCodes('&', e.getMessage()));
-            }
-            e.setFormat(msg + e.getMessage());
+            e.setFormat(config + e.getMessage());
 
         }
     }

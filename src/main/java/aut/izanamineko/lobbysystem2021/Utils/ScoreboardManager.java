@@ -64,7 +64,7 @@ public class ScoreboardManager {
         }
     }
 
-    public void load() {
+    public void loadScoreboardManager() {
         try {
             this.sbconfig.load(this.sbfile);
         } catch (IOException|org.bukkit.configuration.InvalidConfigurationException iOException) {

@@ -5,6 +5,7 @@ import aut.izanamineko.lobbysystem2021.Utils.PermissionsListCFG;
 import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
 import aut.izanamineko.lobbysystem2021.Utils.ScoreboardManager;
 import aut.izanamineko.lobbysystem2021.main;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,20 +22,20 @@ public class ReloadCMD implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
         Player p = (Player)sender;
         if (!(sender instanceof Player)) {
-            System.out.println("You need to be a Player");
+            sender.sendMessage(ChatColor.RED + "[LobbySystem] You can use this Command only as a Player");
             return true;
         }
         if(cmd.getName().equalsIgnoreCase("lobbysystem")){
             if(!p.hasPermission("LobbySystem.MainCommand") || !p.isOp()) {
-                String msg = this.mm.getConfig().getString("Messages.General.NoPermissions").replace("&", "§");
+                String msg = ChatColor.translateAlternateColorCodes('&', this.mm.getConfig().getString("Messages.General.NoPermissions"));
                 p.sendMessage(msg);
                 return true;
             }
             if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-                this.cm.load();
-                this.mm.load();
-                this.sb.load();
-                String msg = this.mm.getConfig().getString("Messages.General.Reload").replace("&", "§");
+                String msg = ChatColor.translateAlternateColorCodes('&', this.mm.getConfig().getString("Messages.General.Reload"));
+                cm.loadConfigManager();
+                mm.loadMessagesManager();
+                sb.loadScoreboardManager();
                 p.sendMessage(msg);
                 return true;
             }

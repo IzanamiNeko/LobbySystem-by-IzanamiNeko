@@ -60,7 +60,7 @@ public class SetWarp implements CommandExecutor {
                 cfg.set(".Warps" + "." + id + ".Pitch", pitch);
 
                 String sucess = ChatColor.translateAlternateColorCodes('&', this.mm.getConfig().getString("Messages.WarpSystem.SetWarp.Set")).replaceAll("%warpname%", id);
-                ;
+
                 p.sendMessage(sucess);
 
                 try {

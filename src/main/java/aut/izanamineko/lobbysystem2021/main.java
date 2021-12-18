@@ -63,7 +63,7 @@ public class main extends JavaPlugin {
         pm.registerEvents(new JQEvent(), this);
         pm.registerEvents(new Respawn(this), this);
         pm.registerEvents(new BypassLimit(), this);
-        pm.registerEvents(new AntiPlugin(), this);
+        //pm.registerEvents(new AntiPlugin(), this);
         pm.registerEvents(new TeamChat(), this);
         pm.registerEvents(new bScoreboard(this), this);
         pm.registerEvents(new updateTablist(this), this);

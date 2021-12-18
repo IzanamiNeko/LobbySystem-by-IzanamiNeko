@@ -13,7 +13,7 @@ public class ConfigManager {
     public final FileConfiguration config;
 
     public ConfigManager(){
-        this.file = new File("plugins/LobbySystem/messages.yml");
+        this.file = new File("plugins/LobbySystem/config.yml");
         this.config = (FileConfiguration) YamlConfiguration.loadConfiguration(this.file);
         addDefaultStrings();
         checkIfExists();
@@ -38,12 +38,11 @@ public class ConfigManager {
         this.config.addDefault("Config.Quit.Show", "false");
         this.config.addDefault("Config.ChatClear.Enabled", "false");
         this.config.addDefault("Config.ChatClear.AllChat", "true");
-        this.config.addDefault("Config.ChatClear.PlayerChat", "false");
-        this.config.addDefault("Config.AntiPlugin.Enabled", "false");
+        //this.config.addDefault("Config.AntiPlugin.Enabled", "false");
         this.config.addDefault("Config.HelpList.Enabled", "false");
         this.config.addDefault("Config.TeamChat.Enabled", "true");
         this.config.addDefault("Config.TeamChat.Prefix", "&e[&bTeamChat&e] %player%  >> &r");
-        this.config.addDefault("Config.Chat-Format.Enabled", "true");
+        this.config.addDefault("Config.ChatFormat.Enabled", "true");
         this.config.addDefault("Config.DoubleJump.Enabled", "true");
         this.config.addDefault("Config.Warplist.Color", "&2");
         this.config.options().header("LobbySystem CONFIG by IzanamiNeko");
@@ -59,7 +58,7 @@ public class ConfigManager {
         }
     }
 
-    public void load() {
+    public void loadConfigManager() {
         try {
             this.config.load(this.file);
         } catch (IOException|org.bukkit.configuration.InvalidConfigurationException iOException) {

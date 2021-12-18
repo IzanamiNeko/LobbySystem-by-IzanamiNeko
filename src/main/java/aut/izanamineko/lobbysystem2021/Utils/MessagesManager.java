@@ -66,7 +66,7 @@ public class MessagesManager {
         this.config.addDefault("Messages.HelpList.Line9", "&c----------- &6[LobbySystem] &c-----------");
         this.config.addDefault("Messages.AntiPlugin.Message", "&8[&3LobbySystem&8] &7Nice try! Good luck, next time!");
         this.config.addDefault("Messages.ChatClear.Message", "&8[&3LobbySystem&8] &7Chat has been cleared!");
-        this.config.addDefault("Messages.Chat-Format.Format", "%luckperms_prefix% %player_name%:");
+        this.config.addDefault("Messages.ChatFormat.Format", "%luckperms_prefix% %player_name%:");
         this.config.addDefault("Messages.Tablist.Prefix", "%luckperms_prefix%");
         this.config.options().header("LobbySystem MESSAGES CONFIG by IzanamiNeko");
         this.config.options().copyDefaults(true);
@@ -81,7 +81,7 @@ public class MessagesManager {
         }
     }
 
-    public void load() {
+    public void loadMessagesManager() {
         try {
             this.config.load(this.file);
         } catch (IOException|org.bukkit.configuration.InvalidConfigurationException iOException) {
