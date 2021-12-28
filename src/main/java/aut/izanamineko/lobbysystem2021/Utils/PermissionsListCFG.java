@@ -36,7 +36,7 @@ public class PermissionsListCFG {
 
     private void addDefaultStrings(){
 
-        List<String> permissions = Arrays.asList("LobbySystem.CommandProtection", "LobbySystem.Lobby", "LobbySystem.SetLobby", "LobbySystem.PlayerLimit.Bypass", "LobbySystem.ChatClear", "LobbySystem.SetWarp", "LobbySystem.Warp", "LobbySystem.DelWarp", "LobbySystem.Reload", "LobbySystem.HelpCMD", "LobbySystem.TeamChat", "LobbySystem.ReceiveBug");
+        List<String> permissions = Arrays.asList("LobbySystem.Lobby", "LobbySystem.SetLobby", "LobbySystem.PlayerLimit.Bypass", "LobbySystem.ChatClear", "LobbySystem.SetWarp", "LobbySystem.Warp", "LobbySystem.Warplist", "LobbySystem.DelWarp", "LobbySystem.Reload", "LobbySystem.HelpCMD", "LobbySystem.TeamChat", "LobbySystem.ReceiveBug");
         this.plcfg.addDefault("LobbySystem.Permissions", permissions);
         this.plcfg.options().copyDefaults(true);
         save();

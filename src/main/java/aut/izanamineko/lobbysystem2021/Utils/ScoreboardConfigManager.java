@@ -8,12 +8,12 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-public class ScoreboardManager {
+public class ScoreboardConfigManager {
     public final File sbfile;
 
     public final FileConfiguration sbconfig;
 
-    public ScoreboardManager(){
+    public ScoreboardConfigManager(){
         this.sbfile = new File("plugins/LobbySystem/scoreboard.yml");
         this.sbconfig = (FileConfiguration) YamlConfiguration.loadConfiguration(this.sbfile);
         addDefaultStrings();
@@ -34,7 +34,7 @@ public class ScoreboardManager {
 
     private void addDefaultStrings(){
 
-        this.sbconfig.addDefault("Scoreboard.Title", "&8[&3LobbySystem&8]");
+        this.sbconfig.addDefault("Scoreboard.displayName", "&8[&3LobbySystem&8]");
         this.sbconfig.addDefault("Scoreboard.13",  "&8Server/Hub:");
         this.sbconfig.addDefault("Scoreboard.12",  "&4%server_name%");
         this.sbconfig.addDefault("Scoreboard.11",  "&6");
@@ -49,7 +49,7 @@ public class ScoreboardManager {
         this.sbconfig.addDefault("Scoreboard.2", "&4");
         this.sbconfig.addDefault("Scoreboard.1", "&5Test");
         this.sbconfig.addDefault("Scoreboard.0", "&8%vault_rank%");
-        List<String> Strings = Arrays.asList("Here are some Strings to use for the Scoreboard", "%maxplayer%", "%online%", "%bungee_<servername>%", "https://luckperms.net/wiki/Placeholders");
+        List<String> Strings = Arrays.asList("Here are some Strings to use for the Scoreboard", "https://luckperms.net/wiki/Placeholders");
         this.sbconfig.set("Scoreboard.Information", Strings);
         this.sbconfig.options().header("LobbySystem Scoreboard CONFIG by IzanamiNeko");
         this.sbconfig.options().copyDefaults(true);

@@ -1,10 +1,11 @@
-package aut.izanamineko.lobbysystem2021.TabScore;
+package aut.izanamineko.lobbysystem2021.scoreboard;
 
-import aut.izanamineko.lobbysystem2021.Utils.ScoreboardManager;
+import aut.izanamineko.lobbysystem2021.Utils.ScoreboardConfigManager;
 import aut.izanamineko.lobbysystem2021.main;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,9 +19,9 @@ import org.bukkit.scoreboard.Scoreboard;
 public class bScoreboard implements Listener {
 
 
-    private main plugin;
+   /* private main plugin;
 
-    ScoreboardManager sb = new ScoreboardManager();
+    ScoreboardConfigManager sb = new ScoreboardConfigManager();
 
     public bScoreboard(main plugin) {
         this.plugin = plugin;
@@ -28,20 +29,21 @@ public class bScoreboard implements Listener {
     }
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent e) {
-        final Player p = e.getPlayer();
+    public void onJoin(PlayerJoinEvent e, OfflinePlayer offline) {
+        Player p = e.getPlayer();
         updateScoreBoard(p);
-        Bukkit.getScheduler().scheduleSyncRepeatingTask((Plugin)this.plugin, new Runnable() {
+        Bukkit.getScheduler().runTaskAsynchronously((Plugin)this.plugin, new Runnable() {
             public void run() {
                 bScoreboard.this.updateScoreBoard(p);
             }
         },  20L, 20L);
     }
 
-    public void updateScoreBoard(Player e) {
-        Player p = e.getPlayer();
+
+    public void updateScoreBoard(Player p) {
+        Player player  = p.getPlayer();
         Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
-        Objective objekt = board.registerNewObjective("bla", "blub");
+        Objective objekt = board.registerNewObjective("one", "two");
         int online = Bukkit.getOnlinePlayers().size();
         int maxplayer = Bukkit.getMaxPlayers();
 
@@ -79,5 +81,5 @@ public class bScoreboard implements Listener {
 
 
         e.setScoreboard(board);
-    }
+    }*/
 }

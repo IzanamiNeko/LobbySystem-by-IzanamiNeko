@@ -1,7 +1,6 @@
 main: aut.izanamineko.lobbysystem2021.main
 name: LobbySystem
-version: V4.2C-MC.18
-api-version: 1.18
+version: 4.5-PRE
 softdepend:
   - PlaceholderAPI
 commands:

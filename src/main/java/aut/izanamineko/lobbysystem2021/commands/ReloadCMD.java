@@ -3,8 +3,7 @@ package aut.izanamineko.lobbysystem2021.commands;
 import aut.izanamineko.lobbysystem2021.Utils.ConfigManager;
 import aut.izanamineko.lobbysystem2021.Utils.PermissionsListCFG;
 import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
-import aut.izanamineko.lobbysystem2021.Utils.ScoreboardManager;
-import aut.izanamineko.lobbysystem2021.main;
+import aut.izanamineko.lobbysystem2021.Utils.ScoreboardConfigManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,7 +14,7 @@ public class ReloadCMD implements CommandExecutor {
 
     MessagesManager mm = new MessagesManager();
     PermissionsListCFG cfgm = new PermissionsListCFG();
-    ScoreboardManager sb = new ScoreboardManager();
+    ScoreboardConfigManager sb = new ScoreboardConfigManager();
     ConfigManager cm = new ConfigManager();
 
     @Override

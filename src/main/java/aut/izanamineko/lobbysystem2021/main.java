@@ -5,8 +5,8 @@ import aut.izanamineko.lobbysystem2021.SpawnSystem.Respawn;
 import aut.izanamineko.lobbysystem2021.SpawnSystem.SetSpawn;
 import aut.izanamineko.lobbysystem2021.SpawnSystem.Spawn;
 import aut.izanamineko.lobbysystem2021.TabScore.TabBar;
-import aut.izanamineko.lobbysystem2021.TabScore.bScoreboard;
 import aut.izanamineko.lobbysystem2021.TabScore.updateTablist;
+import aut.izanamineko.lobbysystem2021.Utils.ChatFormatter;
 import aut.izanamineko.lobbysystem2021.Utils.ConfigManager;
 import aut.izanamineko.lobbysystem2021.Utils.PermissionsListCFG;
 import aut.izanamineko.lobbysystem2021.Utils.MessagesManager;
@@ -25,7 +25,7 @@ import java.io.File;
 
 public class main extends JavaPlugin {
 
-    main plugin;
+    private static main instance;
 
     private MessagesManager mm = new MessagesManager();
     private PermissionsListCFG plcfg = new PermissionsListCFG();
@@ -65,14 +65,10 @@ public class main extends JavaPlugin {
         pm.registerEvents(new BypassLimit(), this);
         //pm.registerEvents(new AntiPlugin(), this);
         pm.registerEvents(new TeamChat(), this);
-        pm.registerEvents(new bScoreboard(this), this);
+        //pm.registerEvents(new bScoreboard(this), this);
         pm.registerEvents(new updateTablist(this), this);
         pm.registerEvents(new TabBar(), this);
-        //pm.registerEvents(new DoubleJump(this), this);
-        //pm.registerEvents(new InvOnJoin(this), this);
-        //pm.registerEvents(new InvOnJoin(this), this);
-        //pm.registerEvents(new PlayerInformation(this), this);
-        //pm.registerEvents(new GeneralEvent(this), this);
+        pm.registerEvents(new ChatFormatter(), this);
     }
 
     private void loadCommands() {
@@ -88,8 +84,6 @@ public class main extends JavaPlugin {
         getCommand("ping").setExecutor(new PingCMD( this));
         getCommand("bug").setExecutor(new BugCMD(this));
         getCommand("warplist").setExecutor(new WarpList());
-
-        plugin = this;
     }
 
    /* private void loadConfig()
@@ -128,6 +122,10 @@ public class main extends JavaPlugin {
         if(!bug.exists()){
             bug.mkdir();
         }
+    }
+
+    public static main getInstance() {
+        return instance;
     }
 
 }

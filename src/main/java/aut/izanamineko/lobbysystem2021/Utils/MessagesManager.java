@@ -67,7 +67,9 @@ public class MessagesManager {
         this.config.addDefault("Messages.AntiPlugin.Message", "&8[&3LobbySystem&8] &7Nice try! Good luck, next time!");
         this.config.addDefault("Messages.ChatClear.Message", "&8[&3LobbySystem&8] &7Chat has been cleared!");
         this.config.addDefault("Messages.ChatFormat.Format", "%luckperms_prefix% %player_name%:");
-        this.config.addDefault("Messages.Tablist.Prefix", "%luckperms_prefix%");
+        this.config.addDefault("Messages.Tablist.List", "%luckperms_prefix% %username%");
+        this.config.addDefault("Messages.Tablist.Header", "&6TEST");
+        this.config.addDefault("Messages.Tablist.Footer", "&6TEST");
         this.config.options().header("LobbySystem MESSAGES CONFIG by IzanamiNeko");
         this.config.options().copyDefaults(true);
         save();
