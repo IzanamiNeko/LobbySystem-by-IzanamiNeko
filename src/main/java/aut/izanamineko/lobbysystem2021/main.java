@@ -84,6 +84,8 @@ public class main extends JavaPlugin {
         getCommand("ping").setExecutor(new PingCMD( this));
         getCommand("bug").setExecutor(new BugCMD(this));
         getCommand("warplist").setExecutor(new WarpList());
+        getCommand("heal").setExecutor(new HealCommand());
+        getCommand("repair").setExecutor(new RepairCommand());
     }
 
    /* private void loadConfig()

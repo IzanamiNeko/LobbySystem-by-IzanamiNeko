@@ -70,6 +70,12 @@ public class MessagesManager {
         this.config.addDefault("Messages.Tablist.List", "%luckperms_prefix% %username%");
         this.config.addDefault("Messages.Tablist.Header", "&6TEST");
         this.config.addDefault("Messages.Tablist.Footer", "&6TEST");
+        this.config.addDefault("Messages.Heal.Healed", "&8[&3LobbySystem&8] &aYou have been healed!");
+        this.config.addDefault("Messages.Heal.OtherPlayer", "&8[&3LobbySystem&8] &aYou healed %healplayer%!");
+        this.config.addDefault("Messages.Heal.NotOnline", "&8[&3LobbySystem&8] &a%notonline% is not Online, please use a other Playername");
+        this.config.addDefault("Messages.Heal.Usage", "&8[&3LobbySystem&8] &aUse /heal <Player> to heal yourself or other Player");
+        this.config.addDefault("Messages.Repair.RepairAll", "&8[&3LobbySystem&8] &aAll of your Equipment in your Inventory has been repaired");
+        this.config.addDefault("Messages.Repair.Usage", "&8[&3LobbySystem&8] &aUse /repair or /repair all to repair your Equipment");
         this.config.options().header("LobbySystem MESSAGES CONFIG by IzanamiNeko");
         this.config.options().copyDefaults(true);
         save();

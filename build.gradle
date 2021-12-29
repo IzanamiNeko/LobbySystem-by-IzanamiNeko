@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'aut.izanamineko.lobbysystem2021'
-version 'V4.5-PRE'
+version 'V4.5-1'
 
 repositories {
         maven {

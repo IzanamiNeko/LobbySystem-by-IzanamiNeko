@@ -1,6 +1,6 @@
 main: aut.izanamineko.lobbysystem2021.main
 name: LobbySystem
-version: 4.5-PRE
+version: 4.5-1
 softdepend:
   - PlaceholderAPI
 commands:
@@ -30,3 +30,7 @@ commands:
     description: Use /bug to report a bug
   kit:
     description: testing
+  heal:
+    description: Use /heal or /heal <player> to heal yourself or other Players
+  repair:
+    description: Use /repair or /repair all to repair your Equipment
